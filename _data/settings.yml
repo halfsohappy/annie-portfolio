@@ -81,9 +81,10 @@ color_settings:
 
 font_settings:
   #font_embed: '<link href="https://fonts.googleapis.com/css?family=Poppins:300,500" rel="stylesheet">'
-  font_embed: '<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&family=Playwrite+IE:wght@100..400&display=swap" rel="stylesheet">'
+  font_embed: '<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&family=Playwrite+DE+Grund:wght@100..400&family=Playwrite+IE:wght@100..400&display=swap" rel="stylesheet">'
 
-  title_font: '"Playwrite IE", cursive'
+  super_title_font: '"Playwrite IE", cursive'
+  title_font: '"Playwrite DE Grund", cursive'
   body_font: '"Martian Mono", monospacex'
   regular_weight: 300
   bold_weight: 500

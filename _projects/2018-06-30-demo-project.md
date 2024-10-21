@@ -1,4 +1,4 @@
----
+<!-- ---
 title: 'Demo Project'
 subtitle: 'This is a demo'
 date: 2018-06-30 00:00:00
@@ -108,4 +108,4 @@ We've packed this theme with powerful features to show off your work.
 
 Why not put them to use on your new portfolio?
 
-<a href="https://jekyllthemes.io/theme/board-portfolio-jekyll-theme" class="button button--large">Get This Theme</a>
+<a href="https://jekyllthemes.io/theme/board-portfolio-jekyll-theme" class="button button--large">Get This Theme</a> -->

@@ -40,7 +40,7 @@
 }
 
 .header__title {
-	font-family: $title-font;
+	font-family: $super-title-font;
 	font-size: $sitetitle-small;
 	font-weight: $sitetitle-weight;
 	letter-spacing: $sitetitle-spacing;
@@ -199,11 +199,11 @@
 }
 
 .menu__list__item__link {
-	font-size: $menu-small;
-	font-weight: $menu-weight;
+	font-size: $menu-medium;
+	font-weight: 300;
 	//color: $overlay-text-color;
 	text-decoration: none; //i don't know why but it needs this now
-	font-family: $body-font;
+	font-family: $title-font;
 	//padding: 10px 0;
 
 	&:hover {
