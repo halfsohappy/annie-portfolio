@@ -101,11 +101,11 @@
 	letter-spacing: $grid-item-title-spacing;
 
 	@include mq(tabletp) {
-		font-size: $grid-item-title-medium;
+		font-size: $grid-item-title-small;
 	}
 
 	@include mq(laptop) {
-		font-size: $grid-item-title-large;
+		font-size: $grid-item-title-small;
 	}
 }
 
@@ -117,11 +117,11 @@
 	letter-spacing: $grid-item-subtitle-spacing;
 
 	@include mq(tabletp) {
-		font-size: $grid-item-subtitle-medium;
+		font-size: $grid-item-subtitle-small;
 	}
 
 	@include mq(laptop) {
-		font-size: $grid-item-subtitle-large;
+		font-size: $grid-item-subtitle-small;
 	}
 }
 
