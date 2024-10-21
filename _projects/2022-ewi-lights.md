@@ -3,7 +3,7 @@ title: 'Reactive LEDs for Wind Synthesizer'
 # subtitle: 'This is a demo'
 date: 2022-3-1 00:00:00
 description: Board is a stylish full-width masonry grid theme. Made for designers, artists, photographers and developers to show off their best work.
-featured_image: '/images/ewi_led/still_crop.jpg'
+featured_image: '/images/thumbs/ewi_led.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)

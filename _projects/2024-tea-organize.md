@@ -3,7 +3,7 @@ title: 'Bespoke "Floating" Tea Organizer'
 subtitle: 'This one has it all: Magnets! CAD! Dovetail Joints!'
 date: 2024-8-1 00:00:00
 description: Board is a stylish full-width masonry grid theme. Made for designers, artists, photographers and developers to show off their best work.
-featured_image: '/images/tea_organize/on_porch.jpeg'
+featured_image: '/images/thumbs/tea.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)

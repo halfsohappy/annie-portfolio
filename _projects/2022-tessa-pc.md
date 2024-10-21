@@ -3,7 +3,7 @@ title: 'Custom All-In-One PC'
 subtitle: 'for my little sister :)'
 date: 2022-12-25 00:00:00
 description: Board is a stylish full-width masonry grid theme. Made for designers, artists, photographers and developers to show off their best work.
-featured_image: '/images/tessa_pc/pc_on_her_desk.jpg'
+featured_image: '/images/thumbs/tessa_pc.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)

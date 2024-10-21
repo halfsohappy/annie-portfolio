@@ -3,7 +3,7 @@ title: 'FPGA-based Synthesizer'
 subtitle: 'A class final. This one has it all: i2s! Midi! WS2812 signaling protocol! Verilog!'
 date: 2024-3-1 00:00:00
 description:
-featured_image: '/images/fpga/collage.PNG'
+featured_image: '/images/thumbs/fpga.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)

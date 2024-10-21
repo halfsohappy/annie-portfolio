@@ -3,7 +3,7 @@ title: 'LED Matrix Alarm Clocks'
 subtitle: 'Four hardwood frames with LED Matrices for telling the time. This one has it all: Purpleheart! Pecan! Bolivian Rosewood! Red Oak! Various types of joinery! And of course, USB-C.'
 date: 2023-5-1 00:00:00
 description:
-featured_image: '/images/alarm/alarm_screenie.png'
+featured_image: '/images/thumbs/alarm.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)

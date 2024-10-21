@@ -3,7 +3,7 @@ title: 'Leather LED Suspenders & Remote'
 subtitle: 'A spiritual successor to my synchronous LED bands. This one has it all: Gradient Math! iPod Aesthetics! Authentic Dead Cow! And of course, USB-C.'
 date: 2024-2-1 00:00:00
 description:
-featured_image: '/images/suspend/nos_lobby.jpg'
+featured_image: '/images/thumbs/suspend.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)

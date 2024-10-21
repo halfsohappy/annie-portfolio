@@ -3,7 +3,7 @@ title: 'DIY Omnichord'
 subtitle: 'A midi controller from high school.'
 date: 2022-4-1 00:00:00
 description:
-featured_image: '/images/omnichord/on_table.jpg'
+featured_image: '/images/thumbs/omnichord.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)

@@ -3,7 +3,7 @@ title: '"Dream" Li-Po charger with Power Path'
 subtitle: 'I was tired of cheap Li-po chargers that never had all of the features I actually needed, so I designed this one to have it all: Power path management! A physical On/Off switch! Mounting holes! And of course, USB-C.'
 date: 2024-7-1 00:00:00
 description: 
-featured_image: '/images/dream_charger/easyeda.png'
+featured_image: '/images/thumbs/charger.webp'
 ---
 
 ![](/images/demo/landscape-01.jpg)
