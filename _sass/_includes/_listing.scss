@@ -15,7 +15,6 @@
 }
 
 .listing-item {
-	background-color: white;
 	position: relative;
 	padding: $grid-spacing/2;
 	float: left;
@@ -68,7 +67,7 @@
 
 	opacity: 0;
 	visibility: hidden;
-	@include transition(all 0.3s ease-in-out);
+	//@include transition(all 0.3s ease-in-out);
 }
 
 .listing-item__content--top {
@@ -91,7 +90,7 @@
 .listing-item__info {
 	opacity: 0;
 	@include translate(0,10px);
-	@include transition(all 0.3s ease-in-out);
+	//@include transition(all 0.3s ease-in-out);
 }
 
 .listing-item__title {
