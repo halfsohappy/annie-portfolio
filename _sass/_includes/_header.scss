@@ -11,8 +11,12 @@
 .header {
 	padding: 20px 20px;
 	background-color: $pretty-pink;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
+	border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
 	color: $pink-white; //this is for the menu items
+	text-align: center;
+
 
 	.wrap {
 		max-width: 100%;
@@ -41,12 +45,15 @@
 
 .header__title {
 	font-family: $super-title-font;
-	font-size: $sitetitle-small;
+	font-size: $sitetitle-large;
 	font-weight: $sitetitle-weight;
-	letter-spacing: $sitetitle-spacing;
+	// letter-spacing: $sitetitle-spacing;
 	line-height: 1;
 	color: $pink-white;
 	text-decoration: none; //i don't know why but it needs this now
+	// display: grid;
+	// text-align: center;
+	// al
 
 
 	&:hover {
@@ -66,14 +73,20 @@
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Menu
 
-.menu {	
-	@include mq(tabletp) {
-		position: absolute;
-		top: 50%;
-		right: 22px;
-		@include translate(0,-50%);
-	}
+.menu_left, .menu_right {
+	text-align: left;
+	position: absolute;
+	top: 50%;
+	@include translate(0,-50%);
 }
+
+.menu_left {
+	left: 22px;
+}
+.menu_right {
+	right: 22px;
+}
+
 
 .menu__toggle {
 	position: absolute;
@@ -92,7 +105,7 @@
 }
 
 .menu__toggle__icon {
-	float: right;
+	float: left;
 	position: relative;
 	width: 24px;
 	height: 20px;
@@ -199,8 +212,8 @@
 }
 
 .menu__list__item__link {
-	font-size: $menu-medium;
-	font-weight: 300;
+	font-size: $menu-large;
+	font-weight: 500;
 	//color: $overlay-text-color;
 	text-decoration: none; //i don't know why but it needs this now
 	font-family: "Playwrite DE Grund", serif;
