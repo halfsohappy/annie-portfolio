@@ -206,7 +206,7 @@
 
 	color: $pink-white;
 	font-size: $menu-large*1.25;
-	font-weight: 600;
+	font-weight: 500;
 	letter-spacing: $grid-item-title-spacing;
 
 	@include mq(tabletp) {
@@ -221,7 +221,7 @@
 
 .menu__list__item__link {
 	font-size: $menu-large*1.25;
-	font-weight: 600;
+	font-weight: 500;
 	//color: $overlay-text-color;
 	text-decoration: none; //i don't know why but it needs this now
 	font-family: "Playwrite DE Grund", serif;
