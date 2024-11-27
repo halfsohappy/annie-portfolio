@@ -11,9 +11,9 @@
 .header {
 	padding: 20px 20px;
 	background-color: $pretty-pink;
-	margin-bottom: 40px;
-	border-bottom-left-radius: 25px;
-	border-bottom-right-radius: 25px;
+	margin-bottom: 15px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	color: $pink-white; //this is for the menu items
 	text-align: center;
 
@@ -81,10 +81,15 @@
 }
 
 .menu_left {
-	left: 22px;
+//	left: 10%;
+	color: $overlay-text-color;
+	font-family: "Playwrite DE Grund", serif;;
+	// font-size: 20px;
+	// font-weight: 600;
+	// letter-spacing: $grid-item-title-spacing;
 }
 .menu_right {
-	right: 22px;
+	right: 2px;
 }
 
 
@@ -109,7 +114,7 @@
 	position: relative;
 	width: 24px;
 	height: 20px;
-	margin-left: 8px;
+	margin-right: 5%;
 
 	span, span:before, span:after {
 		content: '';
@@ -200,6 +205,9 @@
 .menu__list__item {
 
 	color: $pink-white;
+	font-size: $menu-large*1.25;
+	font-weight: 600;
+	letter-spacing: $grid-item-title-spacing;
 
 	@include mq(tabletp) {
 		display: inline-block;
@@ -212,20 +220,21 @@
 }
 
 .menu__list__item__link {
-	font-size: $menu-large;
-	font-weight: 500;
+	font-size: $menu-large*1.25;
+	font-weight: 600;
 	//color: $overlay-text-color;
 	text-decoration: none; //i don't know why but it needs this now
 	font-family: "Playwrite DE Grund", serif;
-	//padding: 10px 0;
+	padding: 10px 10px 16px;
+
 
 	&:hover {
 		color: $overlay-accent-color;
 	}
 
 	@include mq(tabletp) {
-		padding: 0 0 3px;
-		font-size: $menu-medium;
+		padding: 10px 10px 16px;
+		font-size: $menu-medium*1.25;
 		//color: $text-dark-color;
 		color: $pink-white;
 
@@ -236,7 +245,7 @@
 	}
 
 	@include mq(laptop) {
-		font-size: $menu-large;
+		font-size: $menu-large*1.25;
 	}
 	
 	&.active-link {
@@ -249,7 +258,7 @@
 }
 
 .menu__button {
-	margin-top: 15px;
+	margin-top: 20px;
 	padding: 15px 20px 16px;
 	font-size: 13px;
 

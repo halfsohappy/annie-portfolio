@@ -1,24 +1,19 @@
 <ul class="contact-links">
-    {% if site.data.settings.social_settings.email %}
-    <li class="email" data-balloon="Email" data-balloon-pos="left"><a href="mailto:{{site.data.settings.social_settings.email}}"><i class="far fa-envelope"></i></a></li>
-    {% else %}
-    {% endif %}
-
-    {% if site.data.settings.social_settings.linkedin_url %}
-    <li class="linkedin" data-balloon="LinkedIn" data-balloon-pos="left"><a href="https://in.linkedin.com/in/{{site.data.settings.social_settings.linkedin}}" target="_blank"><i
-            class="fab fa-linkedin"></i></a></li>
-    {% else %}
-    {% endif %}
+        {% if site.data.settings.my_social_settings.email %}
+        <li class="email" data-balloon="Email" data-balloon-pos="right"><a href="{{site.data.settings.my_social_settings.email}}" target="_blank"><i
+                class="fas fa-envelope"></i></a></li>
+        {% else %}
+        {% endif %}
 
     {% if site.data.settings.social_settings.github_url %}
-    <li class="github" data-balloon="GitHub" data-balloon-pos="right"><a href="http://github.com/{{site.data.settingsgithub}}" target="_blank"><i
+    <li class="github" data-balloon="GitHub" data-balloon-pos="right"><a href="http://github.com/{{site.data.settings.social_settings.github}}" target="_blank"><i
             class="fab fa-github"></i></a></li>
     {% else %}
     {% endif %}
 
-    {% if site.data.settings.social_settings.resume_url %}
-    <li class="resume" data-balloon="Resume" data-balloon-pos="right"><a href="{{site.data.settings.social_settings.resume_url}}"><i
-            class="far fa-file-alt"></i></a></li>
+    {% if site.data.settings.my_social_settings.resume %}
+    <li class="resume" data-balloon="Resume" data-balloon-length="large" data-balloon-pos="right"><a href="{{site.data.settings.my_social_settings.resume}}"><i
+            class="fas fa-file-alt"></i></a></li>
     {% else %}
     {% endif %}
 </ul>

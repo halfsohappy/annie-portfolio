@@ -8,4 +8,15 @@
 	</li>
 	{% endif %}
 	{% endfor %}
+	
+	{% for name in site.data.settings.my_social_settings %}
+	{% if name[1] != '' %}
+	<li class="socials__item">
+		<a href="{{ name[1] }}" target="_blank" class="socials__item__link" title="{{ name[0] | remove: '_url' | replace: '-', ' ' | capitalize }}">
+			<i class="fas fa-{{ name[0] | replace: 'email', 'envelope' | replace: 'resume', 'file-alt'}}" aria-hidden="true"></i>
+		</a>
+	</li>
+	{% endif %}
+	{% endfor %}
+
 </ul>
