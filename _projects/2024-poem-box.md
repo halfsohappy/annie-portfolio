@@ -4,6 +4,7 @@ subtitle: 'This one has it all: Receipt paper! Custom PCBs! Dozens of CAD revisi
 date: 2024-1-1 00:00:00
 description: 
 featured_image: '/images/thumbs/poem.webp'
+permalink: /poembox/
 ---
 
 ![](/images/demo/landscape-01.jpg)

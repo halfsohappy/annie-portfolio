@@ -90,6 +90,7 @@
 }
 .menu_right {
 	right: 2px;
+	@include mq(mobilep){display: none;}
 }
 
 

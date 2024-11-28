@@ -8,9 +8,9 @@ header_settings:
 # 0xfbaded
 menu_settings:
   menu_items_left:
-    - title: 'Grid'
-      url: '/'
-    - title: 'List View'
+    # - title: 'Grid'
+    #   url: '/'
+    - title: 'List'
       url: '/list/'
     - title: 'About'
       url: '/about/'
@@ -20,7 +20,7 @@ footer_settings:
 
 grid_settings:
   overlay_opacity: 0.8
-  grid_spacing: 15
+  grid_spacing: 10
   content_alignment: bottom
 
 contact_settings:
@@ -34,7 +34,7 @@ social_settings:
   twitter_url: ''
   instagram_url: ''
   snapchat_url: ''
-  youtube_url: https://www.youtube.com/@halfsohappy/
+  youtube_url: ''
   google-plus_url: ''
   vimeo_url: ''
   pinterest_url: ''

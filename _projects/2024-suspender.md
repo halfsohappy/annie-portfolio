@@ -4,7 +4,8 @@ subtitle: 'A spiritual successor to my synchronous LED bands. This one has it al
 date: 2024-2-1 00:00:00
 description:
 featured_image: '/images/thumbs/suspend.webp'
-skills: Wireless, Embedded, Wearables
+skills: "Wireless, Embedded, Wearables"
+permalink: /suspender/
 ---
 
 ![](/images/demo/landscape-01.jpg)

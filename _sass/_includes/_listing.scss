@@ -27,6 +27,9 @@
 	@include mq(desktop) {
 		width: 25%;
 	}
+	@include mq(mobilep) {
+		width: 100%;
+	}
 }
 
 .listing-item__link {
@@ -104,6 +107,11 @@
 		font-size: $grid-item-title-small;
 	}
 
+	@include mq(tabletl) {
+		font-size: $grid-item-title-small*.8;
+
+	}
+
 	@include mq(laptop) {
 		font-size: $grid-item-title-small;
 	}
@@ -118,6 +126,10 @@
 
 	@include mq(tabletp) {
 		font-size: $grid-item-subtitle-small;
+	}
+	@include mq(tabletl) {
+		font-size: $grid-item-subtitle-small*.8;
+
 	}
 
 	@include mq(laptop) {

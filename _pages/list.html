@@ -9,7 +9,7 @@ permalink: /list/
 
 {% for thing in site.projects reversed%}
 
-  <a class="card" style="background-color: #fbaded;" href="#">
+  <a class="card" style="background-color: #fbaded;" href="{{thing.permalink}}">
   <h4 class="card-header">
     {{thing.title}}
   </h4>
