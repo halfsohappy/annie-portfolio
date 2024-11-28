@@ -1,0 +1,32 @@
+---
+layout: default
+title: List View
+description: Image-free viewing of projects
+permalink: /list/
+---
+
+<div class="container">
+
+{% for thing in site.projects reversed%}
+
+  <a class="card" style="background-color: #fbaded;" href="#">
+  <h4 class="card-header">
+    {{thing.title}}
+  </h4>
+
+    <div class="card-body" style="background-color: #faf9f9;">
+      <p class="card-text">{{thing.subtitle}}</p>
+    </div>
+    
+    <!-- <div class="card-body" style="background-color: #faf9f9;">
+      {{"Relevant Skills:"}} {{thing.skills | join: ", "}}
+    </div> -->
+
+
+  </a>
+
+
+{% endfor %}
+
+</div>
+
