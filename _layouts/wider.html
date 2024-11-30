@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<section class="intro">
+
+	<div class="wrap", style="max-width:75%">
+
+		<h1>{{ page.title }}</h1>
+		<br>
+		{% if page.date %}
+		<span class="badge text-bg-info">{{page.date | date: "%Y"}}</span>
+		{% endif %}
+  
+		{% if page.personal %}
+		<span class="badge text-bg-primary">Personal Project</span>
+		{% endif %}
+  
+		{% if page.class %}
+		<span class="badge text-bg-secondary">Class Project</span>
+		{% endif %}
+  
+		{% if page.EMB %}
+		<span class="badge text-bg-warning">Embedded</span>
+		{% endif %}
+  
+		{% if page.DSP %}
+		<span class="badge text-bg-danger">DSP</span>
+		{% endif %}
+  
+		{% if page.PCBD %}
+		<span class="badge text-bg-success">PCB Design</span>
+		{% endif %}
+  
+		{% if page.WOOD %}
+		<span class="badge text-bg-light">Woodworking</span>
+		{% endif %}
+  
+		{% if page.CAD %}
+		<span class="badge text-bg-dark">CAD</span>
+		{% endif %}
+  
+		{% if page.CS %}
+		<span class="badge text-bg-dark">CS</span>
+		{% endif %}
+  
+		<p>{{ page.subtitle }}</p>
+	</div>
+
+</section>
+
+<section class="singles">
+
+	{{ page.content }}
+
+</section>

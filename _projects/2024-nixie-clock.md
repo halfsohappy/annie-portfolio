@@ -4,6 +4,15 @@ subtitle: 'This one has it all: ICs from the 70s! 200 Volts! Extremely Competent
 date: 2024-9-1 00:00:00
 description: 
 featured_image: '/images/thumbs/nixie.webp'
+
+personal:
+class: true
+EMB:
+DSP:
+PCBD:
+WOOD:
+3D-CAD: true
+CS:
 ---
 
 ![](/images/demo/landscape-01.jpg)

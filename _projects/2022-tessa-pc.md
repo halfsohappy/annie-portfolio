@@ -5,6 +5,15 @@ date: 2022-12-25 00:00:00
 description: 
 featured_image: '/images/thumbs/tessa_pc.webp'
 permalink: /tessa-pc/
+
+personal: true
+class:
+EMB:
+DSP:
+PCBD:
+WOOD:
+3D-CAD: true
+CS:
 ---
 
 ![](/images/demo/landscape-01.jpg)

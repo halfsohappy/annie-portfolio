@@ -5,7 +5,7 @@ description: Image-free viewing of projects
 permalink: /list/
 ---
 
-<div class="container">
+<div class="container" id="content">
 
 {% for thing in site.projects reversed%}
 
@@ -15,6 +15,43 @@ permalink: /list/
   </h4>
 
     <div class="card-body" style="background-color: #faf9f9;">
+
+      {% if thing.date %}
+      <span class="badge text-bg-info">{{thing.date | date: "%Y"}}</span>
+      {% endif %}
+
+      {% if thing.personal %}
+      <span class="badge text-bg-primary">Personal Project</span>
+      {% endif %}
+
+      {% if thing.class %}
+      <span class="badge text-bg-secondary">Class Project</span>
+      {% endif %}
+
+      {% if thing.EMB %}
+      <span class="badge text-bg-warning">Embedded</span>
+      {% endif %}
+
+      {% if thing.DSP %}
+      <span class="badge text-bg-danger">DSP</span>
+      {% endif %}
+
+      {% if thing.PCBD %}
+      <span class="badge text-bg-success">PCB Design</span>
+      {% endif %}
+
+      {% if thing.WOOD %}
+      <span class="badge text-bg-light">Woodworking</span>
+      {% endif %}
+
+      {% if thing.3D-CAD %}
+      <span class="badge text-bg-dark">3D CAD</span>
+      {% endif %}
+
+      {% if thing.CS %}
+      <span class="badge text-bg-dark">CS</span>
+      {% endif %}
+
       <p class="card-text">{{thing.subtitle}}</p>
     </div>
     

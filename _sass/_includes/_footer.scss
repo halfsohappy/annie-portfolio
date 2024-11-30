@@ -80,6 +80,5 @@
 .mobile-buttons{
 	margin-top: 1%;
 	display: none;
-	@include mq(mobilel){display: block;}
 	@include mq(mobilep){display: block;}
 }

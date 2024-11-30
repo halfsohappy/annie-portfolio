@@ -4,6 +4,15 @@ subtitle: 'I was tired of cheap Li-po chargers that never had all of the feature
 date: 2024-7-1 00:00:00
 description: 
 featured_image: '/images/thumbs/charger.webp'
+
+personal: true
+class:
+EMB:
+DSP:
+PCBD: true
+WOOD:
+CAD:
+CS:
 ---
 
 ![](/images/demo/landscape-01.jpg)

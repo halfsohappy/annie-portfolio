@@ -69,6 +69,19 @@
 	}
 }
 
+.header__desc{
+	font-family: $body-font;
+	font-size: $p-small * .8;
+	line-height: .1;
+	text-decoration: none; //i don't know why but it needs this now
+	font-weight: 300;
+}
+
+.headesc__line{
+	margin-top: 18px;
+
+}
+
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Menu

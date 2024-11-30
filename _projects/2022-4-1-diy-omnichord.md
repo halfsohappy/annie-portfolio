@@ -4,6 +4,15 @@ subtitle: 'A midi controller from high school.'
 date: 2022-4-1 00:00:00
 description:
 featured_image: '/images/thumbs/omnichord.webp'
+
+personal: true
+class:
+EMB:
+DSP: 
+PCBD:
+WOOD:
+3D-CAD:
+CS:
 ---
 
 ![](/images/demo/landscape-01.jpg)

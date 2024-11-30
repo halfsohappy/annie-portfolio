@@ -5,6 +5,15 @@ date: 2024-11-14 00:00:00
 description: Board is a stylish full-width masonry grid theme. Made for designers, artists, photographers and developers to show off their best work.
 featured_image: '/images/thumbs/tension.webp'
 permalink: /tensiometer/
+
+personal:
+class: true
+EMB: true
+DSP: 
+PCBD: 
+WOOD:
+3D-CAD: true
+CS: true
 ---
 
 ![](/images/demo/landscape-01.jpg)

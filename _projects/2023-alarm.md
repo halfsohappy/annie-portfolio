@@ -4,6 +4,15 @@ subtitle: 'Four hardwood frames with LED Matrices for telling the time. This one
 date: 2023-5-1 00:00:00
 description:
 featured_image: '/images/thumbs/alarm.webp'
+
+personal: true
+class:
+EMB: true
+DSP:
+PCBD:
+WOOD: true
+3D-CAD: true
+CS: true
 ---
 
 ![](/images/demo/landscape-01.jpg)

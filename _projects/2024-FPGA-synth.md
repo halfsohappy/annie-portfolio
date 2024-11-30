@@ -4,6 +4,15 @@ subtitle: 'A class final. This one has it all: i2s! Midi! WS2812 signaling proto
 date: 2024-3-1 00:00:00
 description:
 featured_image: '/images/thumbs/fpga.webp'
+
+personal: true
+class:
+EMB: true
+DSP: true
+PCBD:
+WOOD:
+CAD:
+CS: true
 ---
 
 ![](/images/demo/landscape-01.jpg)

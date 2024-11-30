@@ -5,6 +5,15 @@ date: 2024-1-1 00:00:00
 description: 
 featured_image: '/images/thumbs/poem.webp'
 permalink: /poembox/
+
+personal: true
+class:
+EMB: true
+DSP: 
+PCBD: true
+WOOD:
+3D-CAD: true
+CS: true
 ---
 
 ![](/images/demo/landscape-01.jpg)
