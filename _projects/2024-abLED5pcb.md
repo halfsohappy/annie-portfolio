@@ -2,7 +2,7 @@
 title: 'v5 of Custom Wireless LED Bands PCB'
 subtitle: 'This one has it all: BMI160 IMU! Power Path! LED Strip Attachment! ESP32C3! And of course, USB-C.'
 date: 2024-7-16
-featured_image: '/images/thumbs/abled5pcb.webp'
+featured_image: '/images/thumbs/abLED5pcb.webp'
 permalink: /abLED5_PCB/
 layout: wider
 
@@ -27,7 +27,7 @@ Between v1 and v5 were many iterations that didn't see a full-batch production (
 
 ![](/images/abled5pcb/ab41.jpeg)
 
-The immediately preceding version was v4.1 (shown above), which was operational and worked well! But had a few flaws that I felt needed to be improved before the huge time sink that is assembling a whole set of bands.
+The immediately preceding version was v4.1 (shown above), which was operational and worked well! One feature I'm really proud of is the extremely sophisticated power path with switch that will completely disconnect the battery from all loads when in the off position, while still allowing the battery to be charged. When in the on position, plugging the device in puts all of the load on the power in *and* charges the battery, and will switch back to battery uninterupted when unplugged. But, the design had a few flaws that I felt needed to be improved before the huge time sink that is assembling a whole set of bands.
 
 * The battery connected by a pair of 2mm pitch through holes, which lead to the soldered connection constantly breaking without strain relief (which I didn't have the space to provide)
 * Soldering the battery to THTs also meant they were not easily swappable
