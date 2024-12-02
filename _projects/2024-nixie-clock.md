@@ -15,6 +15,22 @@ WOOD:
 CS:
 ---
 
+The main attraction of this one is probably the gorgeous perfboard circuits -- which are my best ever -- so I'll show them off at the top.
+
+<div class="gallery" data-columns="3">
+	<img src="/images/nixie/IC1.webp">
+	<img src="/images/nixie/IC2.webp">
+	<img src="/images/nixie/shift_reg.webp">
+	<img src="/images/nixie/power.webp">
+	<img src="/images/nixie/to_ribbon.webp">
+	<img src="/images/nixie/ribbon_back.webp">
+</div>
+
+
+
+
+
+
 ![](/images/demo/landscape-01.jpg)
 
 ## Demo content

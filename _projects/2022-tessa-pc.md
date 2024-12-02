@@ -1,10 +1,11 @@
 ---
 title: 'Custom All-In-One PC'
-subtitle: 'for my little sister :)'
+subtitle: 'This one has it all: Retro Vibes! Aluminum Extrusions! Christmas Spirit! Pop OS! And I think technically, USB-C.'
 date: 2022-12-25 00:00:00
 description: 
 featured_image: '/images/thumbs/tessa_pc.webp'
 permalink: /tessa-pc/
+layout: wider
 
 personal: true
 class:
@@ -16,106 +17,92 @@ WOOD:
 CS:
 ---
 
-![](/images/demo/landscape-01.jpg)
+<h3> Project Summary </h3>
 
-## Demo content
+This is a custom PC I built for my little sister as a Christmas present! The enclosure is 100% custom by me, made of acrylic and aluminum extrusions. I took inspiration from retro all-in-one computers with chunky off-white ABS enclosures, like the first macintosh. 
 
-This page is a demo that shows everything you can do inside portfolio and blog posts.
+<h3> Motivation </h3>
 
-We've included everything you need to create engaging posts about your work, and show off your case studies in a beautiful way.
+My twin younger sisters were sharing the "family computer" which meant we couldn't all play Minecraft together! So I decided to repurpose a PC that I built into an NES into a custom all-in-one for one of them. Some goals I had for the build were for it to:
 
-**Obviously,** we’ve styled up *all the basic* text formatting options [available in markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+* Have a lot of character! Be eye-catching, perhaps adorable, perhaps quirky, and a bit of a statement piece
+* Still be totally practical and functional, and require as LITTLE troubleshooting as possible
+* Be capable of playing games like Minecraft and handling the other demanding computing needs of a 10 year old
+* Be an excellent excuse to learn more about laser cutting and Illustrator, which I was inexperienced with at the time
 
-You can create lists:
+<h3> Design </h3>
 
-* Simple bulleted lists
-* Like this one
-* Are cool
+The build consisted of a frame of aluminium extusions with acrylic panels on both the inside and outside, to which the components and fans were mounted, as well as 3D-printed brackets to mount pieces like the monitor.
 
-And:
+{% figure %}
+<p><img src="/images/tessa_pc/bare_frame.jpeg" alt="Bare Frame"></p>
+{% endfigure %}
+	The bare frame. It's missing the bottom piece of
+	the front frame and the side fan mount.
 
-1. Numbered lists
-2. Like this other one
-3. Are great too
+{% figure %}
+<p><img src="/images/tessa_pc/screen.jpeg" alt="Screen"></p>
+{% endfigure %}
+	The monitor, mounted with 3D printed brackets.
 
-You can also add blockquotes, which are shown at a larger width to help break up the layout and draw attention to key parts of your content:
+<h4> Wiring </h4>
 
-> “Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.”
+In terms of wiring, there is a hidden SATA drive behind the motherboard with a Linux (Pop! OS) ISO, as a little easter egg from when this computer was meant to be "Annie's Linux Computer" and not "Her sister's Minecraft PC". The drive is connected to a key switch which physically disconnects power to the drive (which is the preferred boot drive) so I can switch it into Linux mode and boot it up for me, then remove my key and it goes back to being her PC -- and she can't even view the drive! This does, however, result in the most cursed cable in existence: a combination of molex (to get 5V from the PSU), micro-usb (providing continuous power to the monitor), ring terminals (for the key switch), and SATA (for the linux SSD).
 
-The theme also supports markdown tables:
+{% figure %}
+<p><img src="/images/tessa_pc/cable.jpg" alt="Cable"></p>
+{% endfigure %}
+	I am so, so sorry.
 
-| Item                 | Author        | Supports tables? | Price |
-|----------------------|---------------|------------------|-------|
-| Duet Jekyll Theme    | Jekyll Themes | Yes              | $49   |
-| Index Jekyll Theme   | Jekyll Themes | Yes              | $49   |
-| Journal Jekyll Theme | Jekyll Themes | Yes              | $49   |
+Also for wiring, I made a custom front I/O panel with USB 3, intake fans (more on that later), a big and fun arcade button for power, and aftermentioned key switch.
 
-And footnotes[^1], which link to explanations[^2] at the bottom of the page[^3].
 
-[^1]: Beautiful modern, minimal theme design.
-[^2]: Powerful features to show off your work.
-[^3]: Maintained and supported by the theme developer.
+{% figure %}
+<p><img src="/images/tessa_pc/front.jpeg" alt="I/O"></p>
+{% endfigure %}
 
-You can throw in some horizontal rules too:
+<h4> Airflow </h4>
 
----
+A lot of thought was put into airflow in the case. The main intakes are an 80mm fan in the back and the power supply fan, also on the back of the case. On the right side of the case, the motherboard is mounted, and the CPU cooler is positioned by the main intake. On the side opposite of the motherboard is a massive 140mm fan as the exhaust. The system works very well! The front panel also contains dual 40mm fans that kick in if the graphics card temps get too high, and intake cool air directly onto the card's heatsink.
 
-### Image galleries
+{% figure %}
+<p><img src="/images/tessa_pc/intake.jpeg" alt="Intake"></p>
+{% endfigure %}
+	A test fit of the motherboard and intake.
 
-Here's a really neat custom feature we added – galleries:
+{% figure %}
+<p><img src="/images/tessa_pc/side_fan.jpeg" alt="Side Fan"></p>
+{% endfigure %}
+	A test fit of the side panel with 140mm fan.
 
-<div class="gallery" data-columns="3">
-	<img src="/images/demo/square-01.jpg">
-	<img src="/images/demo/portrait-02.jpg">
-	<img src="/images/demo/square-02.jpg">
-	<img src="/images/demo/square-03.jpg">
-	<img src="/images/demo/square-04.jpg">
-	<img src="/images/demo/landscape-05.jpg">
-</div>
+<h3> Aesthetics </h3>
 
-Inspired by the Galleries feature from WordPress, we've made it easy to create grid layouts for your images. Just use a bit of simple HTML in your post to create a masonry grid image layout:
+Since I wanted to evoke retro all-in-ones, and their gorgeous off-white plastic enclosures, I went with an off-white acrylic that leaned extremely pink (so as to be sister approved). I wanted the classic blocky look, and settled with a design that is a little taller than being a cube, and has a recess for I/O (or an extrusion for the monitor, however you see it). I think it is perfectly striking, yet familiar! 
 
-```html
-<div class="gallery" data-columns="3">
-    <img src="/images/demo/square-01.jpg">
-    <img src="/images/demo/portrait-02.jpg">
-    <img src="/images/demo/square-02.jpg">
-    <img src="/images/demo/square-03.jpg">
-    <img src="/images/demo/square-04.jpg">
-    <img src="/images/demo/landscape-05.jpg">
-</div>
-```
+{% figure %}
+<p><img src="/images/tessa_pc/pc_on_her_desk.jpg" alt="Desk"></p>
+{% endfigure %}
+	What a perfect "little sister" PC!
 
-*See what we did there? Code and syntax highlighting is built-in too!*
+ The monitor was a little smaller than would have been ideal, but it was surprisingly high quality and so I wanted to use it nontheless. To compensate for the large bezels, I hired an artist friend of mine to make a design for the bezels and then lazer engraved it onto the front. To make the design a little more exciting, I added a translucent purple top so you can view the internals.
 
-Change the number inside the 'columns' setting to create different types of gallery for all kinds of purposes. You can even click on each image to seamlessly enlarge it on the page.
 
----
+ {% figure %}
+<p><img src="/images/tessa_pc/bezel.jpeg" alt="Bezel"></p>
+{% endfigure %}
+	The Bezel Design
 
-### Image carousels
+ {% figure %}
+<p><img src="/images/tessa_pc/mon.jpeg" alt="Desk"></p>
+{% endfigure %}
+	The finished head-on view.
 
-Here's another gallery with only one column, which creates a carousel slide-show instead.
 
-A nice little feature: the carousel only advances when it is in view, so your visitors won't scroll down to find it half way through your images.
+At the last second, I made a headphone stand that matched the design, for a complete set of peripherals including a mechanical keyboard I already had, a logitech mouse, and a headset off ebay.
 
-<div class="gallery" data-columns="1">
-	<img src="/images/demo/landscape-02.jpg">
-	<img src="/images/demo/landscape-03.jpg">
-	<img src="/images/demo/landscape-04.jpg">
-</div>
+ {% figure %}
+<p><img src="/images/tessa_pc/peri.jpeg" alt="Desk"></p>
+{% endfigure %}
+	Watch out, r/battlestations.
 
-### What about videos?
-
-Videos are an awesome way to show off your work in a more engaging and personal way, and we’ve made sure they work great on our themes. Just paste an embed code from YouTube or Vimeo, and the theme makes sure it displays perfectly:
-
-<iframe src="https://player.vimeo.com/video/107469489" width="640" height="360" frameborder="0" allowfullscreen></iframe>
-
----
-
-## Pretty cool, huh?
-
-We've packed this theme with powerful features to show off your work.
-
-Why not put them to use on your new portfolio?
-
-<a href="https://jekyllthemes.io/theme/board-portfolio-jekyll-theme" class="button button--large">Get This Theme</a>
+And that's the build! Extremely proud of this one, and recieved a TON of big sister cred for it.

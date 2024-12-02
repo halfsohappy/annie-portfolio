@@ -13,7 +13,7 @@ EMB:
 DSP: 
 PCBD: 
 WOOD: true
-3D-CAD: true
+CAD-3D: true
 CS:
 ---
 
@@ -22,8 +22,6 @@ CS:
 <h3> Project Summary </h3>
 
 This is a Tea Organizer I designed for my workplace (a coffee-shop/performance venue) to simplify finding teas and keeping inventory. The tea is kept in mason jars with custom magnetic lids that attach to metal shelves in the design. 
-
-Relevant Skills:
 
 <h3> Motivation </h3>
 
@@ -48,10 +46,10 @@ The solid walnut (with dovetails!) is sanded past "smooth" territory and into "s
 
 
 <div class="gallery" data-columns="3">
-	<img src="/images/tea_organize/hang.jpeg">
-	<img src="/images/tea_organize/jars.jpeg">
+	<img src="/images/tea_organize/hang.webp">
+	<img src="/images/tea_organize/jars.webp">
 	<img src="/images/tea_organize/tea_cad.webp">
-	<img src="/images/tea_organize/side.jpeg">
-	<img src="/images/tea_organize/back.jpeg">
+	<img src="/images/tea_organize/side.webp">
+	<img src="/images/tea_organize/back.webp">
 	<img src="/images/tea_organize/me_n_tea.webp">
 </div>
