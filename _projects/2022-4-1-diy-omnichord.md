@@ -4,6 +4,7 @@ subtitle: 'A midi controller from high school.'
 date: 2022-4-1 00:00:00
 description:
 featured_image: '/images/thumbs/omnichord.webp'
+permalink: /omnichord/
 
 personal: true
 class:

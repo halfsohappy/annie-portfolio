@@ -4,6 +4,7 @@ subtitle: 'Four hardwood frames with LED Matrices for telling the time. This one
 date: 2023-5-1 00:00:00
 description:
 featured_image: '/images/thumbs/alarm.webp'
+permalink: /alarm/
 
 personal: true
 class:

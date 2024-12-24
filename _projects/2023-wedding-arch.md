@@ -4,6 +4,7 @@ subtitle: A sweetheart table arch for my sister's wedding under a time crunch.
 date: 2023-12-31 00:00:00
 featured_image: '/images/thumbs/arch.webp'
 layout: wider
+permalink: /wed_arch/
 
 personal: true
 class:

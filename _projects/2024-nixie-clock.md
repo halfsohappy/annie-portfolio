@@ -4,6 +4,7 @@ subtitle: 'This one has it all: ICs from the 70s! 200 Volts! Extremely Competent
 date: 2024-9-1 00:00:00
 description: 
 featured_image: '/images/thumbs/nixie.webp'
+permalink: /nixie_pomo/
 
 personal:
 class: true
@@ -25,6 +26,8 @@ The main attraction of this one is probably the gorgeous perfboard circuits -- w
 	<img src="/images/nixie/to_ribbon.webp">
 	<img src="/images/nixie/ribbon_back.webp">
 </div>
+
+This page isn't quite done yet -- a full writeup is coming soon!
 
 <!-- This page isn't quite done yet -- a full writeup is coming soon!
 

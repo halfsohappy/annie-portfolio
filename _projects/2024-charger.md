@@ -5,6 +5,7 @@ date: 2024-7-1 00:00:00
 description: 
 layout: wider
 featured_image: '/images/thumbs/charger.webp'
+permalink: /dream_charger/
 
 personal: true
 class:
