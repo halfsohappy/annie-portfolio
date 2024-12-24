@@ -15,6 +15,8 @@ WOOD: true
 CS: true
 ---
 
+This page isn't quite done yet -- a full writeup is coming soon!
+<!-- 
 ![](/images/demo/landscape-01.jpg)
 
 ## Demo content
@@ -117,4 +119,4 @@ We've packed this theme with powerful features to show off your work.
 
 Why not put them to use on your new portfolio?
 
-<a href="https://jekyllthemes.io/theme/board-portfolio-jekyll-theme" class="button button--large">Get This Theme</a>
+<a href="https://jekyllthemes.io/theme/board-portfolio-jekyll-theme" class="button button--large">Get This Theme</a> -->
