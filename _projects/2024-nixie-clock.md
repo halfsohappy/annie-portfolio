@@ -30,10 +30,6 @@ The main attraction of this one is probably the gorgeous perfboard circuits -- w
 
 
 
-This page isn't quite done yet -- a full writeup is coming soon!
-
-
-
 
 <h3> Project Summary </h3>
 
@@ -47,7 +43,7 @@ I had just taken a digital systems class, and wanted to embark on a project that
 * To have a "retro" vibe, I wanted handmade circuits with THT components and DIP packages. I set the (arbitrary) rule that I couldn't use ICs made after the date of my nixie tube decoder ICs, which were mid-70s. This was to avoid having a board that maybe looked "retro" but just had some microcontrollers in DIP packages, or other ICs that made my job "too easy".  <br><br>
 * Extremely accurate timekeeping. This was just because I'm a bit of a snob and didn't want to use a 555 timer because it could swing as much as a few minutes if I used the device for a couple hours. <br><br>
 * A reasonably compact enclosure so I would actually take it to the library. <br><br>
-* The ability to select intervals of work/study, the two most popular being 25/5 and 50/10.
+* The ability to select intervals of work/study, the two most popular being 25/5 and 50/10. <br><br>
 
 I chose to stretch the '70s rule to not include power components, as I wanted modern high-density Li-Ion batteries and USB-C charging. I also wanted to maximize safety and considering the tubes required 200V, I chose to use a modern boost converter instead of hacking together a flyback.
 
@@ -56,6 +52,10 @@ Ultimately, I ran out of time for this project as the semester got more intense,
 
 <h3> Design </h3>
 
+
+This page isn't quite done yet -- a full writeup is coming soon!
+
+<!-- 
 The design was heavily influenced by the size and depth of the nixie tubes, which I mounted in equally retro sockets that were very deep. I wanted to
 
 Put simply, this design was the same as v4.1 but with all components swapped for the smallest componenet of the same type that was still in spec. The LDO went from a classic AMS1117 (SOT-223 package) to the more foreign "NCP706AMX" LDO, which somehow manages >1A of current in a package measuring 1.2 x 1.6mm! Everything that could be 0402 became 0402, and the ESP32C3 module went from the standard WROOM module to the more compact (and more expensive) WROOM-MINI package. The routing was basically "move parts until the nets seem possible, route until you give up, decide to reduce design constraints, repeat" until I got it working.
@@ -72,7 +72,7 @@ These are black! Because they are visible on the outside of the bands. The back 
 {% figure %}
 <p><img src="/images/abled5pcb/in_hand.webp" alt="Tiny"></p>
 {% endfigure %}
-	Alright, yea. I got it pretty small.
+	Alright, yea. I got it pretty small. -->
 
 <!-- This page isn't quite done yet -- a full writeup is coming soon!
 
