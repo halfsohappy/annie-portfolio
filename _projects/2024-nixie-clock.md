@@ -43,11 +43,13 @@ The original idea for this project was a pomodoro timer (a countdown timer that 
 
 I had just taken a digital systems class, and wanted to embark on a project that used my new skills. I had also been to an amzing electronics shop while studying abroad in london (Cricklewood Electronics!) which had thousands of ICs and components that had been collected over many decades, and that inspired the "retro" aspects of this build. My main goals were:
 
-* For the project to only use digital logic. This meant no microcontroller, nothing that could think: Butlerian Jihad rules
-* To have a "retro" vibe, I wanted handmade circuits with THT components and DIP packages. I set the (arbitrary) rule that I couldn't use ICs made after the date of my nixie tube decoder ICs, which were mid-70s. This was to avoid having a board that maybe looked "retro" but just had some microcontrollers in DIP packages, or other ICs that made my job "too easy". I ended up stretching this rule to not include power components, as I wanted new dense Li-Ion batteries and USB-C charging. I also wanted to maximize safety and considering the tubes required 200V, I chose to use a modern boost converter
-* Extremely accurate timekeeping. This was just because I'm a bit of a snob and didn't want to use a 555 timer because it could swing as much as a few minutes if I used the device for a couple hours.
-* A reasonably compact enclosure so I would actually take it to the library
+* For the project to only use digital logic. This meant no microcontroller, nothing that could think: Butlerian Jihad rules. <br><br>
+* To have a "retro" vibe, I wanted handmade circuits with THT components and DIP packages. I set the (arbitrary) rule that I couldn't use ICs made after the date of my nixie tube decoder ICs, which were mid-70s. This was to avoid having a board that maybe looked "retro" but just had some microcontrollers in DIP packages, or other ICs that made my job "too easy".  <br><br>
+* Extremely accurate timekeeping. This was just because I'm a bit of a snob and didn't want to use a 555 timer because it could swing as much as a few minutes if I used the device for a couple hours. <br><br>
+* A reasonably compact enclosure so I would actually take it to the library. <br><br>
 * The ability to select intervals of work/study, the two most popular being 25/5 and 50/10.
+
+I chose to stretch the '70s rule to not include power components, as I wanted modern high-density Li-Ion batteries and USB-C charging. I also wanted to maximize safety and considering the tubes required 200V, I chose to use a modern boost converter instead of hacking together a flyback.
 
 Ultimately, I ran out of time for this project as the semester got more intense, and so I didn't accomplish all these goals. The clock itself is functional, but just so; I ended up slapping a microcontroller and i2c RTC on it just to have something that worked. It still has 3d printed parts which I don't think fit the retro aesthetic at all, and the enclosure isn't even done being built (it lacks a top plate). There's a lot I'd love to finish, fiz, and optimize on this one when I come back to it!
 
