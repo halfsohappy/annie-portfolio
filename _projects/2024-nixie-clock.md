@@ -27,6 +27,8 @@ The main attraction of this one is probably the gorgeous perfboard circuits -- w
 	<img src="/images/nixie/ribbon_back.webp">
 </div>
 
+
+
 This page isn't quite done yet -- a full writeup is coming soon!
 
 <!-- This page isn't quite done yet -- a full writeup is coming soon!
@@ -133,4 +135,4 @@ We've packed this theme with powerful features to show off your work.
 
 Why not put them to use on your new portfolio?
 
-<a href="https://jekyllthemes.io/theme/board-portfolio-jekyll-theme" class="button button--large">Get This Theme</a> --> --> -->
+<a href="https://jekyllthemes.io/theme/board-portfolio-jekyll-theme" class="button button--large">Get This Theme</a> -->
