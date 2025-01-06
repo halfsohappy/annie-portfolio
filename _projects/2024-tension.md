@@ -16,4 +16,8 @@ WOOD:
 CS: true
 ---
 
+This was a highly involved group project for a product design class, and a full length write-up is coming soon; in the meantime, here is a one-pager we made as a group.
+
+![](/images/tension/group_port.png)
+
 This page isn't quite done yet -- a full writeup is coming soon!
