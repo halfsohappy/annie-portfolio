@@ -18,7 +18,7 @@
 	position: relative;
 	padding: $grid-spacing/2;
 	float: left;
-	width: 33.33%;
+	width: 25%;
 
 	@include mq(tabletl) {
 		width: 25%;
@@ -31,6 +31,8 @@
 		width: 100%;
 	}
 }
+
+
 
 .listing-item__link {
 	position: relative;
