@@ -5,6 +5,7 @@ date: 2024-3-1 00:00:00
 description:
 featured_image: '/images/thumbs/fpga.webp'
 permalink: /fpga_synth/
+layout: wider
 
 personal: true
 class:

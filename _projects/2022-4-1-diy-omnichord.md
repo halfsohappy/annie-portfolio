@@ -5,6 +5,7 @@ date: 2022-4-1 00:00:00
 description:
 featured_image: '/images/thumbs/omnichord.webp'
 permalink: /omnichord/
+layout: wider
 
 personal: true
 class:

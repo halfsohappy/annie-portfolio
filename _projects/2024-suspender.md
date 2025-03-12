@@ -6,6 +6,8 @@ description:
 featured_image: '/images/thumbs/suspend.webp'
 skills: "Wireless, Embedded, Wearables"
 permalink: /suspender/
+layout: wider
+
 
 personal: true
 class:

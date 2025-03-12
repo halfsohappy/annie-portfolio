@@ -5,6 +5,8 @@ date: 2023-5-1 00:00:00
 description:
 featured_image: '/images/thumbs/alarm.webp'
 permalink: /alarm/
+layout: wider
+
 
 personal: true
 class:

@@ -5,6 +5,7 @@ date: 2024-1-1 00:00:00
 description: 
 featured_image: '/images/thumbs/poem.webp'
 permalink: /poembox/
+layout: wider
 
 personal: true
 class:

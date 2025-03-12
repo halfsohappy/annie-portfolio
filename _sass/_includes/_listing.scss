@@ -18,14 +18,14 @@
 	position: relative;
 	padding: $grid-spacing/2;
 	float: left;
-	width: 25%;
+	width: 33.33%;
 
 	@include mq(tabletl) {
-		width: 25%;
+		width: 33.33%;
 	}
 
 	@include mq(desktop) {
-		width: 25%;
+		width: 33.33%;
 	}
 	@include mq(mobilep) {
 		width: 100%;
