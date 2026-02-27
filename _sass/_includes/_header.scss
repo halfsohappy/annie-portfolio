@@ -102,6 +102,12 @@
 	// font-size: 20px;
 	// font-weight: 600;
 	// letter-spacing: $grid-item-title-spacing;
+
+	@include mq(mobilep) {
+		top: 0;
+		bottom: 0;
+		transform: none;
+	}
 }
 .menu_right {
 	right: 2px;
