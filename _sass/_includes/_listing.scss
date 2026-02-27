@@ -73,6 +73,11 @@
 	opacity: 0;
 	visibility: hidden;
 	//@include transition(all 0.3s ease-in-out);
+
+	@include mq(mobilep) {
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 .listing-item__content--top {
@@ -96,6 +101,11 @@
 	opacity: 0;
 	@include translate(0,10px);
 	//@include transition(all 0.3s ease-in-out);
+
+	@include mq(mobilep) {
+		opacity: 1;
+		@include translate(0,0);
+	}
 }
 
 .listing-item__title {
