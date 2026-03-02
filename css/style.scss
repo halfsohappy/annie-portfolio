@@ -141,7 +141,14 @@ $grid-spacing: {{ site.data.settings.grid_settings.grid_spacing }}px;
 
 
 
-// - - - - - - - - - - Global styles
+// - - - - - - - - - - CSS custom properties for layout control
+
+:root {
+	--grid-columns: {{ site.data.settings.grid_settings.grid_columns | default: 3 }};
+	--image-aspect-ratio: {{ site.data.settings.grid_settings.image_aspect_ratio | default: "auto" | remove: '"' }};
+}
+
+
 
 @import "_basic";
 

@@ -12,7 +12,7 @@ featured_image: /images/profile-photo-annie.jpg
 
 		{% for project in site.projects reversed %}
 
-		<div class="listing-item">
+		<div class="listing-item" {% if project.gridw and project.gridw != false %}style="grid-column: span {{ project.gridw }}"{% endif %}>
 
 			<a class="listing-item__link" href="{{ project.url | relative_url }}">
 

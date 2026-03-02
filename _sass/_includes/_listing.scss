@@ -5,30 +5,25 @@
 // - - - - - - - - - - - - - - - - - -
 
 .listing {
-	padding: 0 $grid-spacing/2;
-	margin-top: -$grid-spacing/2;
+	padding: 0;
 	border-radius: 5px;
 }
 
 .listing-wrap {
-	
+	display: grid;
+	grid-template-columns: repeat(var(--grid-columns), 1fr);
+	gap: $grid-spacing;
+
+	@include mq(mobilep) {
+		grid-template-columns: 1fr;
+	}
 }
 
 .listing-item {
 	position: relative;
-	padding: $grid-spacing/2;
-	float: left;
-	width: 33.33%;
 
-	@include mq(tabletl) {
-		width: 33.33%;
-	}
-
-	@include mq(desktop) {
-		width: 33.33%;
-	}
 	@include mq(mobilep) {
-		width: 100%;
+		grid-column: 1 / -1 !important;
 	}
 }
 
@@ -57,6 +52,14 @@
 
 .listing-item__image {
 	width: 100%;
+
+	img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--image-aspect-ratio);
+		object-fit: cover;
+		display: block;
+	}
 }
 
 .listing-item__content {
@@ -179,3 +182,8 @@
 .pagination__next {
 	float: right;
 }
+
+
+
+
+
