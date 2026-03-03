@@ -326,6 +326,81 @@
 			$(this).wrapAll('<div class="table-wrap"></div>');
 		});
 
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - List Filter
+
+		var filterBtns = document.querySelectorAll('.filter-btn');
+
+		if (filterBtns.length) {
+
+			var activeFilters = [];
+
+			function applyListFilters() {
+				document.querySelectorAll('.project-list-item').forEach(function(item) {
+					if (activeFilters.length === 0) {
+						item.classList.remove('hidden');
+					} else {
+						var itemTags = (item.getAttribute('data-tags') || '').split(' ').filter(function(t) { return t; });
+						var match = activeFilters.some(function(f) { return itemTags.indexOf(f) > -1; });
+						item.classList.toggle('hidden', !match);
+					}
+				});
+			}
+
+			function activateListFilter(filter) {
+				activeFilters = filter ? [filter] : [];
+				filterBtns.forEach(function(b) { b.classList.remove('active'); });
+				var target = document.querySelector('.filter-btn[data-filter="' + (filter || 'all') + '"]');
+				if (target) { target.classList.add('active'); }
+				applyListFilters();
+			}
+
+			filterBtns.forEach(function(btn) {
+				btn.addEventListener('click', function() {
+					var filter = this.getAttribute('data-filter');
+
+					if (filter === 'all') {
+						activeFilters = [];
+						filterBtns.forEach(function(b) { b.classList.remove('active'); });
+						document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+					} else {
+						document.querySelector('.filter-btn[data-filter="all"]').classList.remove('active');
+						var idx = activeFilters.indexOf(filter);
+						if (idx > -1) {
+							activeFilters.splice(idx, 1);
+							this.classList.remove('active');
+						} else {
+							activeFilters.push(filter);
+							this.classList.add('active');
+						}
+						if (activeFilters.length === 0) {
+							document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+						}
+					}
+
+					applyListFilters();
+				});
+			});
+
+			// Badge clicks inside list items filter the list without navigating to the project
+			document.querySelectorAll('.project-list-tags .badge[data-filter]').forEach(function(badge) {
+				badge.addEventListener('click', function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					activateListFilter(this.getAttribute('data-filter'));
+				});
+			});
+
+			// Apply URL query param filter on load (e.g. /list/?filter=EMB)
+			var urlParams = new URLSearchParams(window.location.search);
+			var urlFilter = urlParams.get('filter');
+			if (urlFilter) {
+				activateListFilter(urlFilter);
+			}
+
+		}
+
 	}
 
 	// Run functions on load
