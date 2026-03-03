@@ -91,7 +91,7 @@ font_settings:
 
   super_title_font: '"Playwrite IE", cursive'
   title_font: '"Playwrite DE Grund", cursive'
-  body_font: '"Martian Mono", monospacex'
+  body_font: '"Martian Mono", monospace'
   regular_weight: 300
   bold_weight: 500
   site_title:
