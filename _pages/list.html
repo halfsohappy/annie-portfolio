@@ -5,65 +5,201 @@ description: Image-free viewing of projects
 permalink: /list/
 ---
 
-<div class="container" id="content">
+<style>
+  .list-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  .list-filter-bar .filter-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 4px;
+    color: #555;
+  }
+  .filter-btn {
+    border: 2px solid #aaa;
+    background: #fff;
+    color: #555;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    font-weight: 500;
+  }
+  .filter-btn:hover {
+    border-color: #7c5cbf;
+    color: #7c5cbf;
+  }
+  .filter-btn.active {
+    background: #7c5cbf;
+    border-color: #7c5cbf;
+    color: #fff;
+  }
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .project-list-item {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e0d9f5;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow 0.18s ease-in-out, border-color 0.18s ease-in-out;
+  }
+  .project-list-item:hover {
+    box-shadow: 0 4px 16px rgba(124,92,191,0.13);
+    border-color: #b49ee0;
+    color: inherit;
+  }
+  .project-list-item.hidden {
+    display: none;
+  }
+  .project-list-accent {
+    width: 8px;
+    flex-shrink: 0;
+    background: #DAC7FF;
+    border-radius: 10px 0 0 10px;
+  }
+  .project-list-body {
+    padding: 14px 18px;
+    flex: 1;
+  }
+  .project-list-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: #2d2046;
+  }
+  .project-list-subtitle {
+    font-size: 0.88rem;
+    color: #666;
+    margin: 0 0 8px 0;
+    line-height: 1.45;
+  }
+  .project-list-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .project-list-tags .badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 3px 9px;
+  }
+  .badge-woodworking {
+    background: #8B5E3C;
+    color: #fff;
+  }
+  .badge-cs {
+    background: #4a6fa5;
+    color: #fff;
+  }
+  @media (max-width: 600px) {
+    .project-list-title { font-size: 0.97rem; }
+    .project-list-body { padding: 10px 12px; }
+  }
+</style>
 
-{% for thing in site.projects reversed%}
+<div class="container" id="content" style="padding-top: 1.5rem; padding-bottom: 2rem;">
 
-  <a class="card" style="background-color: #DAC7FF;" href="{{thing.permalink}}">
-  <h4 class="card-header">
-    {{thing.title}}
-  </h4>
+  <div class="list-filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="personal">Personal</button>
+    <button class="filter-btn" data-filter="class">Class</button>
+    <button class="filter-btn" data-filter="EMB">Embedded</button>
+    <button class="filter-btn" data-filter="DSP">DSP</button>
+    <button class="filter-btn" data-filter="PCBD">PCB Design</button>
+    <button class="filter-btn" data-filter="WOOD">Woodworking</button>
+    <button class="filter-btn" data-filter="3D-CAD">3D CAD</button>
+    <button class="filter-btn" data-filter="CS">CS</button>
+  </div>
 
-    <div class="card-body" style="background-color: #faf9f9;">
+  <div class="project-list">
 
-      {% if thing.date %}
-      <span class="badge text-bg-info">{{thing.date | date: "%Y"}}</span>
-      {% endif %}
+  {% for thing in site.projects reversed %}
+    {% assign tags = "" %}
+    {% if thing.personal %}{% assign tags = tags | append: " personal" %}{% endif %}
+    {% if thing.class %}{% assign tags = tags | append: " class" %}{% endif %}
+    {% if thing.EMB %}{% assign tags = tags | append: " EMB" %}{% endif %}
+    {% if thing.DSP %}{% assign tags = tags | append: " DSP" %}{% endif %}
+    {% if thing.PCBD %}{% assign tags = tags | append: " PCBD" %}{% endif %}
+    {% if thing.WOOD %}{% assign tags = tags | append: " WOOD" %}{% endif %}
+    {% assign cad = thing['3D-CAD'] %}
+    {% if cad %}{% assign tags = tags | append: " 3D-CAD" %}{% endif %}
+    {% if thing.CS %}{% assign tags = tags | append: " CS" %}{% endif %}
 
-      {% if thing.personal %}
-      <span class="badge text-bg-primary">Personal Project</span>
-      {% endif %}
+    <a class="project-list-item" href="{{thing.permalink}}" data-tags="{{tags | strip}}">
+      <div class="project-list-accent"></div>
+      <div class="project-list-body">
+        <div class="project-list-title">{{thing.title}}</div>
+        {% if thing.subtitle %}<div class="project-list-subtitle">{{thing.subtitle}}</div>{% endif %}
+        <div class="project-list-tags">
+          {% if thing.date %}<span class="badge text-bg-info">{{thing.date | date: "%Y"}}</span>{% endif %}
+          {% if thing.personal %}<span class="badge text-bg-primary">Personal Project</span>{% endif %}
+          {% if thing.class %}<span class="badge text-bg-secondary">Class Project</span>{% endif %}
+          {% if thing.EMB %}<span class="badge text-bg-warning">Embedded</span>{% endif %}
+          {% if thing.DSP %}<span class="badge text-bg-danger">DSP</span>{% endif %}
+          {% if thing.PCBD %}<span class="badge text-bg-success">PCB Design</span>{% endif %}
+          {% if thing.WOOD %}<span class="badge badge-woodworking">Woodworking</span>{% endif %}
+          {% if cad %}<span class="badge text-bg-dark">3D CAD</span>{% endif %}
+          {% if thing.CS %}<span class="badge badge-cs">CS</span>{% endif %}
+        </div>
+      </div>
+    </a>
 
-      {% if thing.class %}
-      <span class="badge text-bg-secondary">Class Project</span>
-      {% endif %}
+  {% endfor %}
 
-      {% if thing.EMB %}
-      <span class="badge text-bg-warning">Embedded</span>
-      {% endif %}
-
-      {% if thing.DSP %}
-      <span class="badge text-bg-danger">DSP</span>
-      {% endif %}
-
-      {% if thing.PCBD %}
-      <span class="badge text-bg-success">PCB Design</span>
-      {% endif %}
-
-      {% if thing.WOOD %}
-      <span class="badge text-bg-light">Woodworking</span>
-      {% endif %}
-
-      {% if thing.CAD-3D %}
-      <span class="badge text-bg-dark">3D CAD</span>
-      {% endif %}
-
-      {% if thing.CS %}
-      <span class="badge text-bg-dark">CS</span>
-      {% endif %}
-
-      <p class="card-text">{{thing.subtitle}}</p>
-    </div>
-    
-    <!-- <div class="card-body" style="background-color: #faf9f9;">
-      {{"Relevant Skills:"}} {{thing.skills | join: ", "}}
-    </div> -->
-
-
-  </a>
-
-
-{% endfor %}
+  </div>
 
 </div>
+
+<script>
+(function() {
+  var activeFilters = [];
+
+  document.querySelectorAll('.filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = this.getAttribute('data-filter');
+
+      if (filter === 'all') {
+        activeFilters = [];
+        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+      } else {
+        document.querySelector('.filter-btn[data-filter="all"]').classList.remove('active');
+        var idx = activeFilters.indexOf(filter);
+        if (idx > -1) {
+          activeFilters.splice(idx, 1);
+          this.classList.remove('active');
+        } else {
+          activeFilters.push(filter);
+          this.classList.add('active');
+        }
+        if (activeFilters.length === 0) {
+          document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+        }
+      }
+
+      document.querySelectorAll('.project-list-item').forEach(function(item) {
+        if (activeFilters.length === 0) {
+          item.classList.remove('hidden');
+        } else {
+          var itemTags = (item.getAttribute('data-tags') || '').split(' ').filter(function(t) { return t; });
+          var match = activeFilters.some(function(f) { return itemTags.indexOf(f) > -1; });
+          item.classList.toggle('hidden', !match);
+        }
+      });
+    });
+  });
+})();
+</script>
 
