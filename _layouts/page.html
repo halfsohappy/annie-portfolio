@@ -7,7 +7,7 @@ layout: default
 	<div class="wrap">
 
 		<h1>{{ page.title }}</h1>
-		<br>
+		<div class="intro__badges">
 		{% if page.date %}
 		<span class="badge text-bg-info">{{page.date | date: "%Y"}}</span>
 		{% endif %}
@@ -43,8 +43,8 @@ layout: default
 		{% if page.CS %}
 		<span class="badge text-bg-dark">CS</span>
 		{% endif %}
-		<p>{{ page.subtitle }}</p>
-  
+		</div>
+		<p class="intro__subtitle">{{ page.subtitle }}</p>
 	</div>
 
 </section>

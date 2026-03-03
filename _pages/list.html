@@ -9,12 +9,12 @@ permalink: /list/
 
 {% for thing in site.projects reversed%}
 
-  <a class="card" style="background-color: #DAC7FF;" href="{{thing.permalink}}">
+  <a class="card" href="{{thing.permalink}}">
   <h4 class="card-header">
     {{thing.title}}
   </h4>
 
-    <div class="card-body" style="background-color: #faf9f9;">
+    <div class="card-body">
 
       {% if thing.date %}
       <span class="badge text-bg-info">{{thing.date | date: "%Y"}}</span>
