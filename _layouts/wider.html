@@ -13,35 +13,35 @@ layout: default
 		{% endif %}
   
 		{% if page.personal %}
-		<span class="badge text-bg-primary">Personal Project</span>
+		<a class="badge text-bg-primary" href="/list/?filter=personal">Personal Project</a>
 		{% endif %}
   
 		{% if page.class %}
-		<span class="badge text-bg-secondary">Class Project</span>
+		<a class="badge text-bg-secondary" href="/list/?filter=class">Class Project</a>
 		{% endif %}
   
 		{% if page.EMB %}
-		<span class="badge text-bg-warning">Embedded</span>
+		<a class="badge text-bg-warning" href="/list/?filter=EMB">Embedded</a>
 		{% endif %}
   
 		{% if page.DSP %}
-		<span class="badge text-bg-danger">DSP</span>
+		<a class="badge text-bg-danger" href="/list/?filter=DSP">DSP</a>
 		{% endif %}
   
 		{% if page.PCBD %}
-		<span class="badge text-bg-success">PCB Design</span>
+		<a class="badge text-bg-success" href="/list/?filter=PCBD">PCB Design</a>
 		{% endif %}
   
 		{% if page.WOOD %}
-		<span class="badge text-bg-light">Woodworking</span>
+		<a class="badge text-bg-light" href="/list/?filter=WOOD">Woodworking</a>
 		{% endif %}
   
 		{% if page.CAD-3D %}
-		<span class="badge text-bg-dark">CAD</span>
+		<a class="badge text-bg-dark" href="/list/?filter=3D-CAD">CAD</a>
 		{% endif %}
   
 		{% if page.CS %}
-		<span class="badge text-bg-dark">CS</span>
+		<a class="badge text-bg-dark" href="/list/?filter=CS">CS</a>
 		{% endif %}
   
 		<p>{{ page.subtitle }}</p>
