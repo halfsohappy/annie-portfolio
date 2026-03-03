@@ -13,7 +13,7 @@ EMB:
 DSP: 
 PCBD: 
 WOOD: true
-CAD-3D: true
+3D-CAD: true
 CS:
 ---
 

@@ -47,7 +47,8 @@ kramdown:
   
 sass:
   style: compressed
-  load_paths: -_sass
+  load_paths:
+    - _sass
 
 plugins:
   - jekyll-paginate
