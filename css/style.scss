@@ -143,9 +143,15 @@ $grid-spacing: {{ site.data.settings.grid_settings.grid_spacing }}px;
 
 // - - - - - - - - - - CSS custom properties for layout control
 
+{% assign _ar = site.data.settings.grid_settings.image_aspect_ratio | default: "3/2" | remove: '"' %}
+{% assign _ar_parts = _ar | split: "/" %}
+{% assign _ar_w = _ar_parts[0] | plus: 0.0 %}
+{% assign _ar_h = _ar_parts[1] | plus: 0.0 %}
+{% assign _cols = site.data.settings.grid_settings.grid_columns | default: 3 %}
+
 :root {
-	--grid-columns: {{ site.data.settings.grid_settings.grid_columns | default: 3 }};
-	--image-aspect-ratio: {{ site.data.settings.grid_settings.image_aspect_ratio | default: "auto" | remove: '"' }};
+	--grid-columns: {{ _cols }};
+	--grid-row-height: calc(100vw / {{ _cols }} * {{ _ar_h }} / {{ _ar_w }});
 }
 
 
