@@ -4,6 +4,9 @@ subtitle: 'I was tired of cheap Li-po chargers that never had all of the feature
 date: 2024-7-1 00:00:00
 description: 
 layout: wider
+grid_width: auto
+grid_height: auto
+grid_crop: cover
 featured_image: '/images/thumbs/charger.webp'
 permalink: /dream_charger/
 

@@ -5,7 +5,9 @@ date: 2023-12-31 00:00:00
 featured_image: '/images/thumbs/arch.webp'
 layout: wider
 permalink: /wed_arch/
-layout: wider
+grid_width: auto
+grid_height: auto
+grid_crop: cover
 
 personal: true
 class:

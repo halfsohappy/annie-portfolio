@@ -3,6 +3,9 @@ title: 'Bespoke "Floating" Tea Organizer'
 subtitle: 'This one has it all: Magnets! CAD! Dovetail Joints!'
 date: 2024-8-1 00:00:00
 layout: wider
+grid_width: auto
+grid_height: auto
+grid_crop: cover
 featured_image: '/images/thumbs/tea.webp'
 permalink: '/tea/'
 

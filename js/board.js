@@ -125,12 +125,90 @@
 		// Wait until first image has loaded
 		$('.page__content').find('img:first').imagesLoaded( function() {
 	
-			// Portfolio grid layout
-			$('.listing-wrap').imagesLoaded( function() {
-				$('.listing-wrap').masonry({
-					itemSelector: '.listing-item',
-					transitionDuration: 0
-				});
+			// Portfolio grid layout - auto-fill algorithm for CSS Grid
+			function autoFillGrid() {
+				var wrap = document.querySelector('.listing-wrap');
+				if (!wrap) return;
+
+				var items = Array.from(wrap.querySelectorAll('.listing-item'));
+				if (!items.length) return;
+
+				// Determine current column count from computed grid style
+				var style = window.getComputedStyle(wrap);
+				var totalCols = style.getPropertyValue('grid-template-columns').split(' ').length || 6;
+
+				var currentRow = [];
+				var currentRowWidth = 0;
+
+				function finalizeRow(row, cols) {
+					var explicitWidth = 0;
+					var autoItems = [];
+
+					row.forEach(function(item) {
+						if (item.isAuto) {
+							autoItems.push(item);
+						} else {
+							explicitWidth += item.width;
+						}
+					});
+
+					var remaining = cols - explicitWidth;
+
+					if (autoItems.length > 0 && remaining > 0) {
+						var perAuto = Math.floor(remaining / autoItems.length);
+						var extra = remaining % autoItems.length;
+
+						autoItems.forEach(function(item) {
+							item.width = perAuto + (extra > 0 ? 1 : 0);
+							if (extra > 0) extra--;
+						});
+					} else if (autoItems.length > 0 && remaining <= 0) {
+						autoItems.forEach(function(item) {
+							item.width = 1;
+						});
+					}
+
+					row.forEach(function(item) {
+						item.el.style.gridColumn = 'span ' + Math.max(1, item.width);
+					});
+				}
+
+				for (var i = 0; i < items.length; i++) {
+					var item = items[i];
+					var rawW = item.getAttribute('data-grid-width');
+					var isAutoW = (!rawW || rawW === 'auto' || rawW === 'false' || rawW === '');
+					var width = isAutoW ? 1 : Math.min(parseInt(rawW, 10), totalCols);
+
+					if (currentRowWidth + width > totalCols && currentRow.length > 0) {
+						finalizeRow(currentRow, totalCols);
+						currentRow = [];
+						currentRowWidth = 0;
+					}
+
+					currentRow.push({ el: item, width: width, isAuto: isAutoW });
+					currentRowWidth += width;
+
+					if (currentRowWidth === totalCols) {
+						finalizeRow(currentRow, totalCols);
+						currentRow = [];
+						currentRowWidth = 0;
+					}
+				}
+
+				if (currentRow.length > 0) {
+					finalizeRow(currentRow, totalCols);
+				}
+			}
+
+			$('.listing-wrap').imagesLoaded(function() {
+				autoFillGrid();
+			});
+
+			// Re-run on resize to adapt to responsive column changes
+			var resizeTimer;
+			$(window).on('resize', function() {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(autoFillGrid, 200);
 			});
 
 			// Show the content

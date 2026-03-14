@@ -6,6 +6,9 @@ description:
 featured_image: '/images/thumbs/tessa_pc.webp'
 permalink: /tessa-pc/
 layout: wider
+grid_width: auto
+grid_height: auto
+grid_crop: cover
 
 personal: true
 class:
