@@ -137,6 +137,10 @@
 				var style = window.getComputedStyle(wrap);
 				var totalCols = style.getPropertyValue('grid-template-columns').split(' ').length || 6;
 
+				// Determine row height from computed grid
+				var rowHeightStr = style.getPropertyValue('grid-auto-rows');
+				var rowHeight = parseInt(rowHeightStr, 10) || 250;
+
 				var currentRow = [];
 				var currentRowWidth = 0;
 
@@ -173,12 +177,41 @@
 					});
 				}
 
+				// Compute preferred width for auto-aspect items based on image aspect ratio
+				function getAspectPreferredWidth(img, mode, cols, rh) {
+					var natW = img.naturalWidth;
+					var natH = img.naturalHeight;
+					if (!natW || !natH) return 1;
+
+					var aspect = natW / natH;
+					// Each column has approximate pixel width
+					var colWidth = wrap.clientWidth / cols;
+					// Preferred columns = aspect ratio * rowHeight / colWidth
+					var preferred = Math.round(aspect * rh / colWidth);
+
+					if (mode === 'auto-small') {
+						preferred = Math.max(1, Math.min(preferred, 2));
+					} else if (mode === 'auto-medium') {
+						preferred = Math.max(2, Math.min(preferred, 3));
+					}
+					return Math.min(preferred, cols);
+				}
+
 				for (var i = 0; i < items.length; i++) {
 					var item = items[i];
 					var rawW = item.getAttribute('data-grid-width');
 					var parsedW = parseInt(rawW, 10);
 					var isAutoW = !parsedW || parsedW < 1;
-					var width = isAutoW ? 1 : Math.min(parsedW, totalCols);
+					var isAutoAspect = (rawW === 'auto-small' || rawW === 'auto-medium');
+					var width;
+
+					if (isAutoAspect) {
+						var img = item.querySelector('img');
+						width = img ? getAspectPreferredWidth(img, rawW, totalCols, rowHeight) : 1;
+						isAutoW = false;
+					} else {
+						width = isAutoW ? 1 : Math.min(parsedW, totalCols);
+					}
 
 					if (currentRowWidth + width > totalCols && currentRow.length > 0) {
 						finalizeRow(currentRow, totalCols);
