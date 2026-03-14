@@ -9,7 +9,7 @@ permalink: /about/
   <div class="clearfix">
   <img src="/images/profile-photo-annie.jpg" class="float-md-end col-md-6" alt="..." style="max-width: 35%; margin-left: 5px; margin-top: 3%; margin-right: 5%;">
   <p style="max-width: 100%; padding-left: 10%; padding-right: 10%">
-    Annabel Lee (she/her) is a lifelong maker with a love of acquiring new skills and exploring novel ideas.
+    Annabel Lee (she/her) is her.
   <br>
   <br>
     She is, to the best of her knowledge, Duke University's first Electrical/Computer Engineering and Theater Studies double major. Currently she's interested in experimental theater technology such as wearable tech, indoor positioning systems, and more expressive alternatives to things like "light cues". Her skills include a love and proficiency with just about every tool, from welding stingers and impact drivers to oscilliscope probes and soldering irons. Her other passions include swing and ballroom dancing, sound 'engineering', leatherworking, puppetry, and over a decade of playing the clarinet.
