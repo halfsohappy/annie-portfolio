@@ -32,7 +32,6 @@
 .listing-item {
 	position: relative;
 	padding: calc($grid-spacing / 2);
-	overflow: hidden;
 
 	@include mq(mobilep) {
 		grid-column: span 1 !important;
@@ -59,10 +58,16 @@
 	display: block;
 	width: 100%;
 	height: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+	@include transition(transform 0.25s ease, box-shadow 0.25s ease);
 
 	@include mq(tabletl) {
 
 		&:hover {
+			transform: scale(1.02);
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+			z-index: 2;
 
 			.listing-item__content {
 				opacity: 1;
@@ -207,6 +212,50 @@
 
 	@include mq(laptop) {
 		font-size: clamp(10px, 1.1vw, $grid-item-subtitle-small);
+	}
+}
+
+// Text scaling for larger grid items (JS adds size classes based on col*row area)
+.listing-item--size-md {
+	.listing-item__title {
+		@include mq(tabletl) {
+			font-size: clamp(13px, 1.4vw, $grid-item-title-small);
+		}
+	}
+	.listing-item__subtitle {
+		@include mq(tabletl) {
+			font-size: clamp(10px, 1.1vw, $grid-item-subtitle-small);
+		}
+	}
+}
+
+.listing-item--size-lg {
+	.listing-item__title {
+		@include mq(tabletl) {
+			font-size: clamp(15px, 1.6vw, $grid-item-title-medium);
+			-webkit-line-clamp: 3;
+		}
+	}
+	.listing-item__subtitle {
+		@include mq(tabletl) {
+			font-size: clamp(11px, 1.2vw, $grid-item-subtitle-medium);
+			-webkit-line-clamp: 4;
+		}
+	}
+}
+
+.listing-item--size-xl {
+	.listing-item__title {
+		@include mq(tabletl) {
+			font-size: clamp(18px, 1.8vw, $grid-item-title-large);
+			-webkit-line-clamp: 3;
+		}
+	}
+	.listing-item__subtitle {
+		@include mq(tabletl) {
+			font-size: clamp(13px, 1.4vw, $grid-item-subtitle-large);
+			-webkit-line-clamp: 5;
+		}
 	}
 }
 
