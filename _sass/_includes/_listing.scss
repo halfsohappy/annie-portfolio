@@ -12,10 +12,12 @@
 .listing-wrap {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
+	grid-auto-rows: 25vw;
 	gap: $grid-spacing;
 
 	@include mq(mobilep) {
 		grid-template-columns: 1fr;
+		grid-auto-rows: 75vw;
 	}
 }
 
@@ -37,17 +39,6 @@
 
 	.listing-item--h2 {
 		grid-row: span 2;
-
-		.listing-item__link,
-		.listing-item__image {
-			height: 100%;
-		}
-
-		.listing-item__image img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
 	}
 }
 
@@ -56,6 +47,7 @@
 .listing-item__link {
 	position: relative;
 	display: block;
+	height: 100%;
 
 	@include mq(tabletl) {
 
@@ -76,6 +68,15 @@
 
 .listing-item__image {
 	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
 }
 
 .listing-item__content {

@@ -9,22 +9,36 @@ featured_image: /images/profile-photo-annie.jpg
 
 	<div class="content-wrap listing-wrap">
 
-
+		{% assign current_col = 0 %}
 		{% for project in site.projects reversed %}
 
+		{% comment %}Calculate effective column width for this item.
+		  gridw: auto fills remaining columns in the current row.
+		  At the start of a new row (current_col == 0) it defaults to 1 so the
+		  item does not unintentionally become full-width.{% endcomment %}
+		{% assign effective_w = 1 %}
+		{% if project.gridw == 'auto' %}
+			{% assign _remaining = 3 | minus: current_col %}
+			{% comment %}If _remaining == 3 we are at the row start: keep width 1.
+			Otherwise fill the leftover columns.{% endcomment %}
+			{% if _remaining == 3 %}{% assign effective_w = 1 %}{% else %}{% assign effective_w = _remaining %}{% endif %}
+		{% else %}
+			{% assign _gridw = project.gridw | plus: 0 %}
+			{% if _gridw == 2 or _gridw == 3 %}{% assign effective_w = _gridw %}{% endif %}
+		{% endif %}
+		{% assign _gridh = project.gridh | plus: 0 %}
+
 		{% assign item_class = 'listing-item' %}
-		{% assign gridw_val = project.gridw | plus: 0 %}
-		{% assign gridh_val = project.gridh | plus: 0 %}
-		{% if gridw_val == 2 %}{% assign item_class = item_class | append: ' listing-item--w2' %}{% endif %}
-		{% if gridw_val == 3 %}{% assign item_class = item_class | append: ' listing-item--w3' %}{% endif %}
-		{% if gridh_val == 2 %}{% assign item_class = item_class | append: ' listing-item--h2' %}{% endif %}
+		{% if effective_w == 2 %}{% assign item_class = item_class | append: ' listing-item--w2' %}{% endif %}
+		{% if effective_w == 3 %}{% assign item_class = item_class | append: ' listing-item--w3' %}{% endif %}
+		{% if _gridh == 2 %}{% assign item_class = item_class | append: ' listing-item--h2' %}{% endif %}
 
 		<div class="{{ item_class }}">
 
 			<a class="listing-item__link" href="{{ project.url | relative_url }}">
 
 				<div class="listing-item__image">
-					<img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+					<img src="{{ project.featured_image | relative_url }}" alt="{{ project.title | escape }}" loading="lazy">
 				</div>
 
 				<div class="listing-item__content listing-item__content--{{ site.data.settings.grid_settings.content_alignment }}">
@@ -37,6 +51,7 @@ featured_image: /images/profile-photo-annie.jpg
 			</a>
 
 		</div>
+		{% assign current_col = current_col | plus: effective_w | modulo: 3 %}
 		{% endfor %}
 
 	</div>

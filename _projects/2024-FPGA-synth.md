@@ -6,6 +6,7 @@ description:
 featured_image: '/images/thumbs/fpga.webp'
 permalink: /fpga_synth/
 layout: wider
+gridw: 2
 
 personal: true
 class:
