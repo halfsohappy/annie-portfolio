@@ -6,6 +6,9 @@ description:
 featured_image: '/images/thumbs/alarm.webp'
 permalink: /alarm/
 layout: wider
+grid_width: auto
+grid_height: auto
+grid_crop: cover
 
 
 personal: true

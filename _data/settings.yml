@@ -21,6 +21,8 @@ footer_settings:
 grid_settings:
   overlay_opacity: 0.8
   grid_spacing: 10
+  grid_columns: 6
+  grid_row_height: 250
   content_alignment: bottom
 
 contact_settings:

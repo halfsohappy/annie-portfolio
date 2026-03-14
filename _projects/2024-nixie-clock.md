@@ -6,6 +6,9 @@ description:
 featured_image: '/images/thumbs/nixie.webp'
 permalink: /nixie_pomo/
 layout: wider
+grid_width: 2
+grid_height: 1
+grid_crop: cover
 
 personal:
 class: true

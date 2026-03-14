@@ -12,11 +12,36 @@ featured_image: /images/profile-photo-annie.jpg
 
 		{% for project in site.projects reversed %}
 
-		<div class="listing-item">
+		{% assign w_class = "" %}
+		{% assign h_class = "" %}
+		{% assign crop_class = "" %}
+		{% assign pos_class = "" %}
+		{% assign gw = project.grid_width | default: "auto" %}
+		{% assign gh = project.grid_height | default: "auto" %}
+		{% assign gc = project.grid_crop | default: "cover" %}
+		{% assign gp = project.grid_crop_position | default: "center" %}
+
+		{% unless gw == "auto" or gw == "auto-small" or gw == "auto-medium" or gw == false %}
+			{% assign w_class = "listing-item--w" | append: gw %}
+		{% endunless %}
+
+		{% unless gh == "auto" or gh == false %}
+			{% assign h_class = "listing-item--h" | append: gh %}
+		{% endunless %}
+
+		{% if gc and gc != "cover" %}
+			{% assign crop_class = "listing-item__image--" | append: gc %}
+		{% endif %}
+
+		{% if gp and gp != "center" %}
+			{% assign pos_class = "listing-item__image--pos-" | append: gp %}
+		{% endif %}
+
+		<div class="listing-item {{ w_class }} {{ h_class }}" data-grid-width="{{ gw }}" data-grid-height="{{ gh }}">
 
 			<a class="listing-item__link" href="{{ project.url | relative_url }}">
 
-				<div class="listing-item__image">
+				<div class="listing-item__image {{ crop_class }} {{ pos_class }}">
 					<img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}" loading="lazy">
 				</div>
 

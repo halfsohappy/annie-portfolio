@@ -11,32 +11,54 @@
 }
 
 .listing-wrap {
-	
+	display: grid;
+	grid-template-columns: repeat($grid-columns, 1fr);
+	grid-auto-flow: dense;
+	grid-auto-rows: $grid-row-height;
+
+	@include mq(mobilep) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include mq(tabletp) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include mq(tabletl) {
+		grid-template-columns: repeat($grid-columns, 1fr);
+	}
 }
 
 .listing-item {
 	position: relative;
 	padding: calc($grid-spacing / 2);
-	float: left;
-	width: 33.33%;
+	overflow: hidden;
 
-	@include mq(tabletl) {
-		width: 33.33%;
-	}
-
-	@include mq(desktop) {
-		width: 33.33%;
-	}
 	@include mq(mobilep) {
-		width: 100%;
+		grid-column: span 1 !important;
+		grid-row: span 1 !important;
 	}
 }
 
+// Column span utility classes
+@for $i from 1 through $grid-columns {
+	.listing-item--w#{$i} {
+		grid-column: span #{$i};
+	}
+}
 
+// Row span utility classes
+@for $i from 1 through $grid-columns {
+	.listing-item--h#{$i} {
+		grid-row: span #{$i};
+	}
+}
 
 .listing-item__link {
 	position: relative;
 	display: block;
+	width: 100%;
+	height: 100%;
 
 	@include mq(tabletl) {
 
@@ -57,7 +79,34 @@
 
 .listing-item__image {
 	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	img {
+		width: 100%;
+		height: 100%;
+		display: block;
+		object-fit: cover;
+	}
 }
+
+// Crop / object-fit utility classes
+.listing-item__image--cover img { object-fit: cover; }
+.listing-item__image--contain img { object-fit: contain; }
+.listing-item__image--fill img { object-fit: fill; }
+.listing-item__image--none img { object-fit: none; }
+.listing-item__image--scale-down img { object-fit: scale-down; }
+
+// Crop position / object-position utility classes
+.listing-item__image--pos-top img { object-position: center top; }
+.listing-item__image--pos-bottom img { object-position: center bottom; }
+.listing-item__image--pos-center img { object-position: center center; }
+.listing-item__image--pos-left img { object-position: left center; }
+.listing-item__image--pos-right img { object-position: right center; }
+.listing-item__image--pos-top-left img { object-position: left top; }
+.listing-item__image--pos-top-right img { object-position: right top; }
+.listing-item__image--pos-bottom-left img { object-position: left bottom; }
+.listing-item__image--pos-bottom-right img { object-position: right bottom; }
 
 .listing-item__content {
 	border-radius: 5px;
@@ -98,6 +147,8 @@
 }
 
 .listing-item__info {
+	width: 100%;
+	overflow: hidden;
 	opacity: 0;
 	@include translate(0,10px);
 	//@include transition(all 0.3s ease-in-out);
@@ -110,42 +161,52 @@
 
 .listing-item__title {
 	color: $overlay-text-color;
-	font-family: "Playwrite DE Grund", serif;;
-	font-size: $grid-item-title-small;
+	font-family: "Playwrite DE Grund", serif;
 	font-weight: $grid-item-title-weight;
 	letter-spacing: $grid-item-title-spacing;
+	text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+	font-size: clamp(12px, 1.4vw, $grid-item-title-small);
+	line-height: 1.2;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 
 	@include mq(tabletp) {
-		font-size: $grid-item-title-small;
+		font-size: clamp(13px, 1.5vw, $grid-item-title-small);
 	}
 
 	@include mq(tabletl) {
-		font-size: $grid-item-title-small*.8;
-
+		font-size: clamp(11px, 1.2vw, $grid-item-title-small * 0.8);
 	}
 
 	@include mq(laptop) {
-		font-size: $grid-item-title-small;
+		font-size: clamp(13px, 1.4vw, $grid-item-title-small);
 	}
 }
 
 .listing-item__subtitle {
 	margin-top: 5px;
 	color: rgba($overlay-text-color, 0.7);
-	font-size: $grid-item-subtitle-small;
 	font-weight: $grid-item-subtitle-weight;
 	letter-spacing: $grid-item-subtitle-spacing;
+	text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	font-size: clamp(9px, 1vw, $grid-item-subtitle-small);
+	line-height: 1.3;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 
 	@include mq(tabletp) {
-		font-size: $grid-item-subtitle-small;
+		font-size: clamp(10px, 1.1vw, $grid-item-subtitle-small);
 	}
 	@include mq(tabletl) {
-		font-size: $grid-item-subtitle-small*.8;
-
+		font-size: clamp(9px, 1vw, $grid-item-subtitle-small * 0.8);
 	}
 
 	@include mq(laptop) {
-		font-size: $grid-item-subtitle-small;
+		font-size: clamp(10px, 1.1vw, $grid-item-subtitle-small);
 	}
 }
 
