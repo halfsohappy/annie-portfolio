@@ -193,8 +193,23 @@
 						preferred = Math.max(1, Math.min(preferred, 2));
 					} else if (mode === 'auto-medium') {
 						preferred = Math.max(2, Math.min(preferred, 3));
+					} else if (mode === 'auto-large') {
+						preferred = Math.max(3, Math.min(preferred, 5));
 					}
 					return Math.min(preferred, cols);
+				}
+
+				// Compute preferred row span for auto-height items based on image aspect ratio
+				function getAutoHeight(img, colSpan, cols, rh) {
+					var natW = img.naturalWidth;
+					var natH = img.naturalHeight;
+					if (!natW || !natH) return 1;
+
+					var colWidth = wrap.clientWidth / cols;
+					var itemPixelWidth = colSpan * colWidth;
+					var idealPixelHeight = (natH / natW) * itemPixelWidth;
+					var rows = Math.max(1, Math.round(idealPixelHeight / rh));
+					return rows;
 				}
 
 				for (var i = 0; i < items.length; i++) {
@@ -202,7 +217,7 @@
 					var rawW = item.getAttribute('data-grid-width');
 					var parsedW = parseInt(rawW, 10);
 					var isAutoW = !parsedW || parsedW < 1;
-					var isAutoAspect = (rawW === 'auto-small' || rawW === 'auto-medium');
+					var isAutoAspect = (rawW === 'auto-small' || rawW === 'auto-medium' || rawW === 'auto-large');
 					var width;
 
 					if (isAutoAspect) {
@@ -232,6 +247,49 @@
 				if (currentRow.length > 0) {
 					finalizeRow(currentRow, totalCols);
 				}
+
+				// Compute auto heights after all column widths are finalized
+				for (var j = 0; j < items.length; j++) {
+					var el = items[j];
+					var rawH = el.getAttribute('data-grid-height');
+					var parsedH = parseInt(rawH, 10);
+					var isAutoH = !parsedH || parsedH < 1 || rawH === 'auto';
+					if (isAutoH) {
+						var imgEl = el.querySelector('img');
+						if (imgEl) {
+							var finalWidth = parseInt(el.style.gridColumn.replace('span ', ''), 10) || 1;
+							var rowSpan = getAutoHeight(imgEl, finalWidth, totalCols, rowHeight);
+							el.style.gridRow = 'span ' + rowSpan;
+						}
+					}
+				}
+
+				// Apply text scaling based on final item area
+				items.forEach(function(item) {
+					var colSpan = parseInt(item.style.gridColumn.replace('span ', ''), 10) || 1;
+					var rowStr = item.style.gridRow;
+					var rowSpan = rowStr ? (parseInt(rowStr.replace('span ', ''), 10) || 1) : 1;
+					// Also check CSS class-based row spans
+					if (!rowStr) {
+						for (var r = totalCols; r >= 1; r--) {
+							if (item.classList.contains('listing-item--h' + r)) {
+								rowSpan = r;
+								break;
+							}
+						}
+					}
+					var area = colSpan * rowSpan;
+					item.classList.remove('listing-item--size-sm', 'listing-item--size-md', 'listing-item--size-lg', 'listing-item--size-xl');
+					if (area >= 8) {
+						item.classList.add('listing-item--size-xl');
+					} else if (area >= 4) {
+						item.classList.add('listing-item--size-lg');
+					} else if (area >= 2) {
+						item.classList.add('listing-item--size-md');
+					} else {
+						item.classList.add('listing-item--size-sm');
+					}
+				});
 			}
 
 			$('.listing-wrap').imagesLoaded(function() {
