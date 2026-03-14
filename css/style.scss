@@ -138,6 +138,8 @@ $footer-logo-width: {{ site.data.settings.footer_settings.logo_width }}px;
 // Grid item
 $overlay-opacity: {{ site.data.settings.grid_settings.overlay_opacity }};
 $grid-spacing: {{ site.data.settings.grid_settings.grid_spacing }}px;
+$grid-columns: {{ site.data.settings.grid_settings.grid_columns }};
+$grid-row-height: {{ site.data.settings.grid_settings.grid_row_height }}px;
 
 
 

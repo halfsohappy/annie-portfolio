@@ -176,8 +176,9 @@
 				for (var i = 0; i < items.length; i++) {
 					var item = items[i];
 					var rawW = item.getAttribute('data-grid-width');
-					var isAutoW = (!rawW || rawW === 'auto' || rawW === 'false' || rawW === '');
-					var width = isAutoW ? 1 : Math.min(parseInt(rawW, 10), totalCols);
+					var parsedW = parseInt(rawW, 10);
+					var isAutoW = !parsedW || parsedW < 1;
+					var width = isAutoW ? 1 : Math.min(parsedW, totalCols);
 
 					if (currentRowWidth + width > totalCols && currentRow.length > 0) {
 						finalizeRow(currentRow, totalCols);
