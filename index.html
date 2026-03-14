@@ -12,7 +12,14 @@ featured_image: /images/profile-photo-annie.jpg
 
 		{% for project in site.projects reversed %}
 
-		<div class="listing-item">
+		{% assign item_class = 'listing-item' %}
+		{% assign gridw_val = project.gridw | plus: 0 %}
+		{% assign gridh_val = project.gridh | plus: 0 %}
+		{% if gridw_val == 2 %}{% assign item_class = item_class | append: ' listing-item--w2' %}{% endif %}
+		{% if gridw_val == 3 %}{% assign item_class = item_class | append: ' listing-item--w3' %}{% endif %}
+		{% if gridh_val == 2 %}{% assign item_class = item_class | append: ' listing-item--h2' %}{% endif %}
+
+		<div class="{{ item_class }}">
 
 			<a class="listing-item__link" href="{{ project.url | relative_url }}">
 
