@@ -233,12 +233,16 @@
 	.listing-item__title {
 		@include mq(tabletl) {
 			font-size: clamp(15px, 1.6vw, $grid-item-title-medium);
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 3;
 		}
 	}
 	.listing-item__subtitle {
 		@include mq(tabletl) {
 			font-size: clamp(11px, 1.2vw, $grid-item-subtitle-medium);
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 4;
 		}
 	}
@@ -248,12 +252,16 @@
 	.listing-item__title {
 		@include mq(tabletl) {
 			font-size: clamp(18px, 1.8vw, $grid-item-title-large);
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 3;
 		}
 	}
 	.listing-item__subtitle {
 		@include mq(tabletl) {
 			font-size: clamp(13px, 1.4vw, $grid-item-subtitle-large);
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 5;
 		}
 	}
