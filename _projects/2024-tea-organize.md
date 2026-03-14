@@ -6,6 +6,7 @@ layout: wider
 grid_width: auto
 grid_height: auto
 grid_crop: cover
+grid_crop_position: center
 featured_image: '/images/thumbs/tea.webp'
 permalink: '/tea/'
 

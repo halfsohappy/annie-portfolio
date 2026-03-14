@@ -10,6 +10,7 @@ layout: wider
 grid_width: 2
 grid_height: 1
 grid_crop: cover
+grid_crop_position: center
 
 
 personal: true

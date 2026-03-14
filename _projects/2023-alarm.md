@@ -9,6 +9,7 @@ layout: wider
 grid_width: auto
 grid_height: auto
 grid_crop: cover
+grid_crop_position: center
 
 
 personal: true

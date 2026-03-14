@@ -122,7 +122,12 @@
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Show content
 
-		// Wait until first image has loaded
+		// Show the content immediately (don't wait for images — lazy-loaded images
+		// won't load while the page is hidden, causing a deadlock).
+		$('body').removeClass('loading');
+		$('body').removeClass('menu--open');
+
+		// Wait until first image has loaded for layout-dependent work
 		$('.page__content').find('img:first').imagesLoaded( function() {
 	
 			// Portfolio grid layout - auto-fill algorithm for CSS Grid
@@ -137,9 +142,10 @@
 				var style = window.getComputedStyle(wrap);
 				var totalCols = style.getPropertyValue('grid-template-columns').split(' ').length || 6;
 
-				// Determine row height from computed grid
-				var rowHeightStr = style.getPropertyValue('grid-auto-rows');
-				var rowHeight = parseInt(rowHeightStr, 10) || 250;
+				// Set row height equal to column width for perfect squares
+				var colWidth = wrap.clientWidth / totalCols;
+				var rowHeight = Math.round(colWidth);
+				wrap.style.gridAutoRows = rowHeight + 'px';
 
 				var currentRow = [];
 				var currentRowWidth = 0;
@@ -302,12 +308,6 @@
 				clearTimeout(resizeTimer);
 				resizeTimer = setTimeout(autoFillGrid, 200);
 			});
-
-			// Show the content
-			$('body').removeClass('loading');
-
-			// Hide the menu
-			$('body').removeClass('menu--open');
 		});
 
 
