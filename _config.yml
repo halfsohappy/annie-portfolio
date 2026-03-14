@@ -49,6 +49,7 @@ sass:
   style: compressed
   load_paths:
     - _sass
+  quiet_deps: true
 
 plugins:
   - jekyll-paginate
