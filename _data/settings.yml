@@ -25,6 +25,39 @@ grid_settings:
   grid_row_height: 250
   content_alignment: bottom
 
+# Tag colors — change here to update borders, badges, and filter buttons everywhere
+tag_colors:
+  personal: "#DAC7FF"
+  class: "#2A0E24"
+  EMB: "#FA5A5A"
+  DSP: "#2A34D5"
+  PCBD: "#5AB518"
+  WOOD: "#E3BB7F"
+  3D-CAD: "#BBF7EF"
+  CS: "#F08EA0"
+
+# Active-text colors for filter buttons (text color when button is active/filled)
+tag_active_text:
+  personal: "#2d2046"
+  class: "#fff"
+  EMB: "#000"
+  DSP: "#fff"
+  PCBD: "#fff"
+  WOOD: "#fff"
+  3D-CAD: "#000"
+  CS: "#fff"
+
+# Full display names for tags
+tag_labels:
+  personal: "Personal"
+  class: "Class"
+  EMB: "Embedded"
+  DSP: "DSP"
+  PCBD: "PCB Design"
+  WOOD: "Woodworking"
+  3D-CAD: "3D CAD"
+  CS: "CS"
+
 contact_settings:
   form_action: ''
   confirmation_url: '/thanks'

@@ -346,6 +346,42 @@
 						item.classList.add('listing-item--size-sm');
 					}
 				});
+
+				// Build repeating-conic-gradient striped borders from tag colors
+				// and compute dynamic border thickness from tile dimensions
+				items.forEach(function(item) {
+					var colors = (item.getAttribute('data-tag-colors') || '').split(',').filter(function(c) { return c.trim(); });
+					var link = item.querySelector('.listing-item__link');
+					if (!link) return;
+
+					// Dynamic border thickness: ~3% of the smaller dimension, clamped 3-8px
+					var rect = item.getBoundingClientRect();
+					var minDim = Math.min(rect.width, rect.height);
+					var thickness = Math.max(3, Math.min(8, Math.round(minDim * 0.03)));
+					var radius = Math.max(4, Math.round(minDim * 0.04));
+					link.style.setProperty('--border-size', thickness + 'px');
+					link.style.setProperty('--border-radius', radius + 'px');
+
+					if (colors.length === 0) {
+						link.style.setProperty('--tag-gradient', 'transparent');
+						return;
+					}
+					if (colors.length === 1) {
+						link.style.setProperty('--tag-gradient', colors[0].trim());
+						return;
+					}
+					// Build repeating stripe pattern — stripe width scales with tile area
+					// so stripes appear roughly the same visual size across all tiles
+					var area = rect.width * rect.height;
+					var stripeWidth = Math.max(3, Math.min(12, Math.round(2400 / Math.sqrt(area))));
+					var stops = [];
+					for (var c = 0; c < colors.length; c++) {
+						var start = stripeWidth * c;
+						var end = stripeWidth * (c + 1);
+						stops.push(colors[c].trim() + ' ' + start + 'deg ' + end + 'deg');
+					}
+					link.style.setProperty('--tag-gradient', 'repeating-conic-gradient(' + stops.join(', ') + ')');
+				});
 			}
 
 			$('.listing-wrap').imagesLoaded(function() {
@@ -358,6 +394,39 @@
 				clearTimeout(resizeTimer);
 				resizeTimer = setTimeout(autoFillGrid, 200);
 			});
+
+			// Header colorbar hover effect — highlight matching tag sections
+			(function() {
+				var barSpans = document.querySelectorAll('.header__colorbar span[data-tag]');
+				if (!barSpans.length) return;
+
+				var currentItem = null;
+
+				function activateTags(item) {
+					if (item === currentItem) return;
+					currentItem = item;
+					var tags = (item.getAttribute('data-tags') || '').trim().split(/\s+/);
+					barSpans.forEach(function(span) {
+						span.classList.toggle('active', tags.indexOf(span.getAttribute('data-tag')) !== -1);
+					});
+				}
+
+				function deactivateAll() {
+					currentItem = null;
+					barSpans.forEach(function(span) {
+						span.classList.remove('active');
+					});
+				}
+
+				document.addEventListener('mouseover', function(e) {
+					var item = e.target.closest('[data-tags]');
+					if (item) {
+						activateTags(item);
+					} else {
+						if (currentItem) deactivateAll();
+					}
+				});
+			})();
 		});
 
 
@@ -555,22 +624,31 @@
 		if (filterBtns.length) {
 
 			var activeFilters = [];
+			var activeYear = null;
 
 			function applyListFilters() {
 				document.querySelectorAll('.project-list-item').forEach(function(item) {
-					if (activeFilters.length === 0) {
-						item.classList.remove('hidden');
-					} else {
+					var tagMatch = true;
+					var yearMatch = true;
+
+					if (activeFilters.length > 0) {
 						var itemTags = (item.getAttribute('data-tags') || '').split(' ').filter(function(t) { return t; });
-						var match = activeFilters.some(function(f) { return itemTags.indexOf(f) > -1; });
-						item.classList.toggle('hidden', !match);
+						tagMatch = activeFilters.some(function(f) { return itemTags.indexOf(f) > -1; });
 					}
+
+					if (activeYear) {
+						yearMatch = item.getAttribute('data-year') === activeYear;
+					}
+
+					item.classList.toggle('hidden', !(tagMatch && yearMatch));
 				});
 			}
 
 			function activateListFilter(filter) {
 				activeFilters = filter ? [filter] : [];
-				filterBtns.forEach(function(b) { b.classList.remove('active'); });
+				filterBtns.forEach(function(b) {
+					if (!b.hasAttribute('data-year')) b.classList.remove('active');
+				});
 				var target = document.querySelector('.filter-btn[data-filter="' + (filter || 'all') + '"]');
 				if (target) { target.classList.add('active'); }
 				applyListFilters();
@@ -579,10 +657,22 @@
 			filterBtns.forEach(function(btn) {
 				btn.addEventListener('click', function() {
 					var filter = this.getAttribute('data-filter');
+					var year = this.getAttribute('data-year');
 
-					if (filter === 'all') {
+					if (year) {
+						// Year button toggle
+						document.querySelectorAll('.filter-btn--year').forEach(function(b) { b.classList.remove('active'); });
+						if (activeYear === year) {
+							activeYear = null;
+						} else {
+							activeYear = year;
+							this.classList.add('active');
+						}
+					} else if (filter === 'all') {
 						activeFilters = [];
-						filterBtns.forEach(function(b) { b.classList.remove('active'); });
+						filterBtns.forEach(function(b) {
+							if (!b.hasAttribute('data-year')) b.classList.remove('active');
+						});
 						document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
 					} else {
 						document.querySelector('.filter-btn[data-filter="all"]').classList.remove('active');

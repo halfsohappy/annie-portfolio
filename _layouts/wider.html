@@ -2,6 +2,13 @@
 layout: default
 ---
 
+<style>
+  .intro .badge {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+  }
+</style>
+
 <section class="intro">
 
 	<div class="wrap", style="max-width:75%">
@@ -13,35 +20,35 @@ layout: default
 		{% endif %}
   
 		{% if page.personal %}
-		<a class="badge text-bg-primary" href="/list/?filter=personal">Personal Project</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.personal }};color:{{ site.data.settings.tag_active_text.personal }}" href="/list/?filter=personal">Personal Project</a>
 		{% endif %}
   
 		{% if page.class %}
-		<a class="badge text-bg-secondary" href="/list/?filter=class">Class Project</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.class }};color:{{ site.data.settings.tag_active_text.class }}" href="/list/?filter=class">Class Project</a>
 		{% endif %}
   
 		{% if page.EMB %}
-		<a class="badge text-bg-warning" href="/list/?filter=EMB">Embedded</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.EMB }};color:{{ site.data.settings.tag_active_text.EMB }}" href="/list/?filter=EMB">Embedded</a>
 		{% endif %}
   
 		{% if page.DSP %}
-		<a class="badge text-bg-danger" href="/list/?filter=DSP">DSP</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.DSP }};color:{{ site.data.settings.tag_active_text.DSP }}" href="/list/?filter=DSP">DSP</a>
 		{% endif %}
   
 		{% if page.PCBD %}
-		<a class="badge text-bg-success" href="/list/?filter=PCBD">PCB Design</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.PCBD }};color:{{ site.data.settings.tag_active_text.PCBD }}" href="/list/?filter=PCBD">PCB Design</a>
 		{% endif %}
   
 		{% if page.WOOD %}
-		<a class="badge text-bg-light" href="/list/?filter=WOOD">Woodworking</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.WOOD }};color:{{ site.data.settings.tag_active_text.WOOD }}" href="/list/?filter=WOOD">Woodworking</a>
 		{% endif %}
   
 		{% if page.CAD-3D %}
-		<a class="badge text-bg-dark" href="/list/?filter=3D-CAD">CAD</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors['3D-CAD'] }};color:{{ site.data.settings.tag_active_text['3D-CAD'] }}" href="/list/?filter=3D-CAD">CAD</a>
 		{% endif %}
   
 		{% if page.CS %}
-		<a class="badge text-bg-dark" href="/list/?filter=CS">CS</a>
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.CS }};color:{{ site.data.settings.tag_active_text.CS }}" href="/list/?filter=CS">CS</a>
 		{% endif %}
   
 		<p>{{ page.subtitle }}</p>

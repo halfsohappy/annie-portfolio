@@ -58,9 +58,16 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	border-radius: 5px;
-	overflow: hidden;
+	border-radius: var(--border-radius, 5px);
+	background: var(--tag-gradient, transparent);
 	@include transition(transform 0.25s ease, box-shadow 0.25s ease);
+
+	// On hover the image/content shrink inward to reveal the striped border
+	.listing-item__image,
+	.listing-item__content {
+		transition: inset 0.25s ease, border-radius 0.25s ease;
+		inset: 0;
+	}
 
 	@include mq(tabletl) {
 
@@ -68,6 +75,12 @@
 			transform: scale(1.02);
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 			z-index: 2;
+
+			.listing-item__image,
+			.listing-item__content {
+				inset: var(--border-size, 4px);
+				border-radius: calc(var(--border-radius, 5px) - var(--border-size, 4px));
+			}
 
 			.listing-item__content {
 				opacity: 1;
@@ -83,9 +96,10 @@
 }
 
 .listing-item__image {
-	width: 100%;
-	height: 100%;
+	position: absolute;
+	inset: 0;
 	overflow: hidden;
+	border-radius: var(--border-radius, 5px);
 
 	img {
 		width: 100%;
@@ -114,16 +128,13 @@
 .listing-item__image--pos-bottom-right img { object-position: right bottom; }
 
 .listing-item__content {
-	border-radius: 5px;
+	border-radius: var(--border-radius, 5px);
 	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	inset: 0;
 	display: flex;
 	padding: 10px 12px;
 	overflow: hidden;
-	background: rgba($overlay-background-color, $overlay-opacity);
+	background: rgba($overlay-background-color, 0.6);
 
 	opacity: 0;
 	visibility: hidden;
@@ -169,7 +180,7 @@
 	font-family: "Playwrite DE Grund", serif;
 	font-weight: $grid-item-title-weight;
 	letter-spacing: $grid-item-title-spacing;
-	text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+	text-shadow: 0 1px 6px rgba(0,0,0,0.7), 0 0 2px rgba(0,0,0,0.5);
 	font-size: clamp(12px, 1.4vw, $grid-item-title-small);
 	line-height: 1.2;
 	padding-bottom: 0.15em;
@@ -192,7 +203,7 @@
 	color: rgba($overlay-text-color, 0.7);
 	font-weight: $grid-item-subtitle-weight;
 	letter-spacing: $grid-item-subtitle-spacing;
-	text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	text-shadow: 0 1px 5px rgba(0,0,0,0.6), 0 0 2px rgba(0,0,0,0.4);
 	font-size: clamp(9px, 1vw, $grid-item-subtitle-small);
 	line-height: 1.3;
 

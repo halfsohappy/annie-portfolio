@@ -24,8 +24,8 @@ permalink: /list/
     background: #fff;
     color: #555;
     border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 0.82rem;
+    padding: 6px 16px;
+    font-size: 0.88rem;
     cursor: pointer;
     transition: all 0.15s ease-in-out;
     font-weight: 500;
@@ -39,42 +39,75 @@ permalink: /list/
     border-color: #7c5cbf;
     color: #fff;
   }
-  /* Per-tag active/hover colors matching their badge colors */
-  .filter-btn[data-filter="personal"]:hover { border-color: #0d6efd; color: #0d6efd; }
-  .filter-btn[data-filter="personal"].active { background: #0d6efd; border-color: #0d6efd; color: #fff; }
-  .filter-btn[data-filter="class"]:hover { border-color: #6c757d; color: #6c757d; }
-  .filter-btn[data-filter="class"].active { background: #6c757d; border-color: #6c757d; color: #fff; }
-  .filter-btn[data-filter="EMB"]:hover { border-color: #ffc107; color: #ffc107; }
-  .filter-btn[data-filter="EMB"].active { background: #ffc107; border-color: #ffc107; color: #000; }
-  .filter-btn[data-filter="DSP"]:hover { border-color: #dc3545; color: #dc3545; }
-  .filter-btn[data-filter="DSP"].active { background: #dc3545; border-color: #dc3545; color: #fff; }
-  .filter-btn[data-filter="PCBD"]:hover { border-color: #198754; color: #198754; }
-  .filter-btn[data-filter="PCBD"].active { background: #198754; border-color: #198754; color: #fff; }
-  .filter-btn[data-filter="WOOD"]:hover { border-color: #8B5E3C; color: #8B5E3C; }
-  .filter-btn[data-filter="WOOD"].active { background: #8B5E3C; border-color: #8B5E3C; color: #fff; }
-  .filter-btn[data-filter="3D-CAD"]:hover { border-color: #212529; color: #212529; }
-  .filter-btn[data-filter="3D-CAD"].active { background: #212529; border-color: #212529; color: #fff; }
-  .filter-btn[data-filter="CS"]:hover { border-color: #4a6fa5; color: #4a6fa5; }
-  .filter-btn[data-filter="CS"].active { background: #4a6fa5; border-color: #4a6fa5; color: #fff; }
+  /* Per-tag active/hover colors — driven by _data/settings.yml tag_colors */
+  {% for tc in site.data.settings.tag_colors %}
+  .filter-btn[data-filter="{{ tc[0] }}"]:hover { border-color: {{ tc[1] }}; color: {{ tc[1] }}; }
+  .filter-btn[data-filter="{{ tc[0] }}"].active { background: {{ tc[1] }}; border-color: {{ tc[1] }}; color: {{ site.data.settings.tag_active_text[tc[0]] | default: "#fff" }}; }
+  {% endfor %}
+  /* Year buttons — visually distinct from multi-select tag pills */
+  .filter-btn.filter-btn--year {
+    border-radius: 6px;
+    border-style: dashed;
+    font-variant-numeric: tabular-nums;
+    min-width: 52px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .filter-btn.filter-btn--year:hover { border-color: #936793; color: #936793; border-style: solid; }
+  .filter-btn.filter-btn--year.active { background: #936793; border-color: #936793; color: #fff; border-style: solid; }
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .filter-row .filter-label {
+    flex-shrink: 0;
+  }
+  .filter-row + .filter-row {
+    margin-top: 6px;
+  }
   .project-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
   .project-list-item {
+    position: relative;
     display: flex;
     text-decoration: none;
     color: inherit;
     border: 1px solid #e0d9f5;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
     background: #fff;
-    transition: box-shadow 0.18s ease-in-out, border-color 0.18s ease-in-out;
+    transition: box-shadow 0.18s ease-in-out, border-color 0.18s ease-in-out, transform 0.2s ease;
+  }
+  .project-list-item::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    padding: 3px;
+    border-radius: 13px;
+    background: var(--tag-gradient, transparent);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 1;
+    pointer-events: none;
   }
   .project-list-item:hover {
     box-shadow: 0 4px 16px rgba(124,92,191,0.13);
-    border-color: #b49ee0;
+    border-color: transparent;
     color: inherit;
+    transform: translateX(4px);
+  }
+  .project-list-item:hover::before {
+    opacity: 1;
   }
   .project-list-item.hidden {
     display: none;
@@ -82,7 +115,7 @@ permalink: /list/
   .project-list-accent {
     width: 8px;
     flex-shrink: 0;
-    background: #DAC7FF;
+    background: {{ site.data.settings.tag_colors.personal }};
     border-radius: 10px 0 0 10px;
   }
   .project-list-body {
@@ -112,11 +145,11 @@ permalink: /list/
     padding: 3px 9px;
   }
   .badge-woodworking {
-    background: #8B5E3C;
+    background: {{ site.data.settings.tag_colors.WOOD }};
     color: #fff;
   }
   .badge-cs {
-    background: #4a6fa5;
+    background: {{ site.data.settings.tag_colors.CS }};
     color: #fff;
   }
   .project-list-tags .badge[data-filter] {
@@ -134,16 +167,34 @@ permalink: /list/
 <div class="container" id="content" style="padding-top: 1.5rem; padding-bottom: 2rem;">
 
   <div class="list-filter-bar">
-    <span class="filter-label">Filter:</span>
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="personal">Personal</button>
-    <button class="filter-btn" data-filter="class">Class</button>
-    <button class="filter-btn" data-filter="EMB">Embedded</button>
-    <button class="filter-btn" data-filter="DSP">DSP</button>
-    <button class="filter-btn" data-filter="PCBD">PCB Design</button>
-    <button class="filter-btn" data-filter="WOOD">Woodworking</button>
-    <button class="filter-btn" data-filter="3D-CAD">3D CAD</button>
-    <button class="filter-btn" data-filter="CS">CS</button>
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="personal">Personal Project</button>
+      <button class="filter-btn" data-filter="class">Class Project</button>
+      <button class="filter-btn" data-filter="EMB">Embedded</button>
+      <button class="filter-btn" data-filter="DSP">DSP</button>
+      <button class="filter-btn" data-filter="PCBD">PCB Design</button>
+      <button class="filter-btn" data-filter="WOOD">Woodworking</button>
+      <button class="filter-btn" data-filter="3D-CAD">3D CAD</button>
+      <button class="filter-btn" data-filter="CS">CS</button>
+    </div>
+    <div class="filter-row">
+      {% assign all_years = "" %}
+      {% for p in site.projects %}
+        {% assign y = p.date | date: "%Y" %}
+        {% unless all_years contains y %}
+          {% if all_years == "" %}
+            {% assign all_years = y %}
+          {% else %}
+            {% assign all_years = all_years | append: "," | append: y %}
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+      {% assign year_list = all_years | split: "," | sort | reverse %}
+      {% for y in year_list %}
+      <button class="filter-btn filter-btn--year" data-year="{{ y }}">{{ y }}</button>
+      {% endfor %}
+    </div>
   </div>
 
   <div class="project-list">
@@ -160,21 +211,32 @@ permalink: /list/
     {% if cad %}{% assign tags = tags | append: " 3D-CAD" %}{% endif %}
     {% if thing.CS %}{% assign tags = tags | append: " CS" %}{% endif %}
 
-    <a class="project-list-item" href="{{thing.permalink}}" data-tags="{{tags | strip}}">
+    {% assign tag_colors = "" %}
+    {% if thing.personal %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.personal | append: "," %}{% endif %}
+    {% if thing.class %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.class | append: "," %}{% endif %}
+    {% if thing.EMB %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.EMB | append: "," %}{% endif %}
+    {% if thing.DSP %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.DSP | append: "," %}{% endif %}
+    {% if thing.PCBD %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.PCBD | append: "," %}{% endif %}
+    {% if thing.WOOD %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.WOOD | append: "," %}{% endif %}
+    {% if cad %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors['3D-CAD'] | append: "," %}{% endif %}
+    {% if thing.CS %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
+    {% assign tag_colors = tag_colors | strip | remove_last: "," %}
+
+    <a class="project-list-item" href="{{thing.permalink}}" data-tags="{{tags | strip}}" data-year="{{thing.date | date: '%Y'}}" data-tag-colors="{{ tag_colors }}">
       <div class="project-list-accent"></div>
       <div class="project-list-body">
         <div class="project-list-title">{{thing.title}}</div>
         {% if thing.subtitle %}<div class="project-list-subtitle">{{thing.subtitle}}</div>{% endif %}
         <div class="project-list-tags">
           {% if thing.date %}<span class="badge text-bg-info">{{thing.date | date: "%Y"}}</span>{% endif %}
-          {% if thing.personal %}<span class="badge text-bg-primary" data-filter="personal">Personal Project</span>{% endif %}
-          {% if thing.class %}<span class="badge text-bg-secondary" data-filter="class">Class Project</span>{% endif %}
-          {% if thing.EMB %}<span class="badge text-bg-warning" data-filter="EMB">Embedded</span>{% endif %}
-          {% if thing.DSP %}<span class="badge text-bg-danger" data-filter="DSP">DSP</span>{% endif %}
-          {% if thing.PCBD %}<span class="badge text-bg-success" data-filter="PCBD">PCB Design</span>{% endif %}
-          {% if thing.WOOD %}<span class="badge badge-woodworking" data-filter="WOOD">Woodworking</span>{% endif %}
-          {% if cad %}<span class="badge text-bg-dark" data-filter="3D-CAD">3D CAD</span>{% endif %}
-          {% if thing.CS %}<span class="badge badge-cs" data-filter="CS">CS</span>{% endif %}
+          {% if thing.personal %}<span class="badge" style="background:{{ site.data.settings.tag_colors.personal }};color:{{ site.data.settings.tag_active_text.personal }}" data-filter="personal">Personal Project</span>{% endif %}
+          {% if thing.class %}<span class="badge" style="background:{{ site.data.settings.tag_colors.class }};color:{{ site.data.settings.tag_active_text.class }}" data-filter="class">Class Project</span>{% endif %}
+          {% if thing.EMB %}<span class="badge" style="background:{{ site.data.settings.tag_colors.EMB }};color:{{ site.data.settings.tag_active_text.EMB }}" data-filter="EMB">Embedded</span>{% endif %}
+          {% if thing.DSP %}<span class="badge" style="background:{{ site.data.settings.tag_colors.DSP }};color:{{ site.data.settings.tag_active_text.DSP }}" data-filter="DSP">DSP</span>{% endif %}
+          {% if thing.PCBD %}<span class="badge" style="background:{{ site.data.settings.tag_colors.PCBD }};color:{{ site.data.settings.tag_active_text.PCBD }}" data-filter="PCBD">PCB Design</span>{% endif %}
+          {% if thing.WOOD %}<span class="badge" style="background:{{ site.data.settings.tag_colors.WOOD }};color:{{ site.data.settings.tag_active_text.WOOD }}" data-filter="WOOD">Woodworking</span>{% endif %}
+          {% if cad %}<span class="badge" style="background:{{ site.data.settings.tag_colors['3D-CAD'] }};color:{{ site.data.settings.tag_active_text['3D-CAD'] }}" data-filter="3D-CAD">3D CAD</span>{% endif %}
+          {% if thing.CS %}<span class="badge" style="background:{{ site.data.settings.tag_colors.CS }};color:{{ site.data.settings.tag_active_text.CS }}" data-filter="CS">CS</span>{% endif %}
         </div>
       </div>
     </a>
@@ -184,3 +246,27 @@ permalink: /list/
   </div>
 
 </div>
+
+<script>
+(function() {
+  document.querySelectorAll('.project-list-item[data-tag-colors]').forEach(function(item) {
+    var colors = (item.getAttribute('data-tag-colors') || '').split(',').filter(function(c) { return c.trim(); });
+    if (colors.length === 0) {
+      item.style.setProperty('--tag-gradient', 'transparent');
+      return;
+    }
+    if (colors.length === 1) {
+      item.style.setProperty('--tag-gradient', colors[0].trim());
+      return;
+    }
+    var stripeWidth = 8;
+    var stops = [];
+    for (var c = 0; c < colors.length; c++) {
+      var start = stripeWidth * c;
+      var end = stripeWidth * (c + 1);
+      stops.push(colors[c].trim() + ' ' + start + 'deg ' + end + 'deg');
+    }
+    item.style.setProperty('--tag-gradient', 'repeating-conic-gradient(' + stops.join(', ') + ')');
+  });
+})();
+</script>

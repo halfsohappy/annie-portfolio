@@ -43,3 +43,13 @@
 	</div>
 
 </header>
+
+<div class="header__colorbar">
+	{% for tc in site.data.settings.tag_colors %}
+	{% assign tag_key = tc[0] %}
+	{% assign tag_text = site.data.settings.tag_active_text[tag_key] | default: "#fff" %}
+	<span data-tag="{{ tag_key }}" style="background:{{ tc[1] }}; color:{{ tag_text }}">
+		<span class="header__colorbar__label">{{ site.data.settings.tag_labels[tag_key] | default: tag_key }}</span>
+	</span>
+	{% endfor %}
+</div>
