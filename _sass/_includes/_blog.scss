@@ -23,7 +23,7 @@
 		width: 33.33%;
 	}
 
-	desktop) {
+	@include mq(desktop) {
 		width: 25%;
 	}
 }
