@@ -183,37 +183,77 @@
 					});
 				}
 
-				// Compute preferred width for auto-aspect items based on image aspect ratio
-				function getAspectPreferredWidth(img, mode, cols, rh) {
-					var natW = img.naturalWidth;
-					var natH = img.naturalHeight;
-					if (!natW || !natH) return 1;
-
-					var aspect = natW / natH;
-					// Each column has approximate pixel width
-					var colWidth = wrap.clientWidth / cols;
-					// Preferred columns = aspect ratio * rowHeight / colWidth
-					var preferred = Math.round(aspect * rh / colWidth);
-
-					if (mode === 'auto-small') {
-						preferred = Math.max(1, Math.min(preferred, 3));
-					} else if (mode === 'auto-medium') {
-						preferred = Math.max(3, Math.min(preferred, 4));
-					} else if (mode === 'auto-large') {
-						preferred = Math.max(5, Math.min(preferred, 8));
+				// Parse an aspect ratio string like "16:9", "4:3", or "1.78" into a number.
+				function parseAspectRatio(val) {
+					if (!val) return null;
+					if (val.indexOf(':') > -1) {
+						var parts = val.split(':');
+						var a = parseFloat(parts[0]), b = parseFloat(parts[1]);
+						if (a > 0 && b > 0) return a / b;
+						return null;
 					}
-					return Math.min(preferred, cols);
+					var f = parseFloat(val);
+					return (f > 0) ? f : null;
 				}
 
-				// Compute preferred row span for auto-height items based on image aspect ratio
-				function getAutoHeight(img, colSpan, cols, rh) {
-					var natW = img.naturalWidth;
-					var natH = img.naturalHeight;
-					if (!natW || !natH) return 1;
+				// Compute preferred width for auto-aspect items.
+				// aspectOverride (optional number) lets the caller supply a target ratio
+				// instead of reading it from the image's natural dimensions.
+				// Clamping ranges scale with cols so the layout stays proportional across
+				// different responsive column counts (2-col mobile, 3-col tablet, 12-col desktop).
+				function getAspectPreferredWidth(img, mode, cols, rh, aspectOverride) {
+					var aspect;
+					if (aspectOverride) {
+						aspect = aspectOverride;
+					} else if (img) {
+						var natW = img.naturalWidth;
+						var natH = img.naturalHeight;
+						if (!natW || !natH) return 1;
+						aspect = natW / natH;
+					} else {
+						return 1;
+					}
 
-					var colWidth = wrap.clientWidth / cols;
-					var itemPixelWidth = colSpan * colWidth;
-					var idealPixelHeight = (natH / natW) * itemPixelWidth;
+					var colW = wrap.clientWidth / cols;
+					var preferred = Math.round(aspect * rh / colW);
+
+					// Clamp to mode-specific ranges that scale with the total column count
+					// so proportions stay consistent across responsive breakpoints.
+					var maxSmall = Math.max(2, Math.round(cols / 4));
+					if (mode === 'auto-small') {
+						preferred = Math.max(1, Math.min(preferred, maxSmall));
+					} else if (mode === 'auto-medium') {
+						var minMed = maxSmall;
+						var maxMed = Math.max(minMed + 1, Math.round(cols / 3));
+						preferred = Math.max(minMed, Math.min(preferred, maxMed));
+					} else if (mode === 'auto-large') {
+						var minLg = Math.max(3, Math.round(cols * 0.4));
+						var maxLg = Math.max(minLg + 1, Math.round(cols * 0.7));
+						preferred = Math.max(minLg, Math.min(preferred, maxLg));
+					}
+					// For plain 'auto' with an aspectOverride: no range clamping, just
+					// the natural aspect-ratio width (still capped at total cols).
+					return Math.min(Math.max(1, preferred), cols);
+				}
+
+				// Compute preferred row span for auto-height items.
+				// aspectOverride (optional number) overrides the image's natural ratio.
+				function getAutoHeight(img, colSpan, cols, rh, aspectOverride) {
+					var aspect;
+					if (aspectOverride) {
+						aspect = aspectOverride;
+					} else if (img) {
+						var natW = img.naturalWidth;
+						var natH = img.naturalHeight;
+						if (!natW || !natH) return 1;
+						aspect = natW / natH;
+					} else {
+						return 1;
+					}
+
+					var colW = wrap.clientWidth / cols;
+					var itemPixelWidth = colSpan * colW;
+					var idealPixelHeight = (1 / aspect) * itemPixelWidth;
 					var rows = Math.max(1, Math.round(idealPixelHeight / rh));
 					return rows;
 				}
@@ -224,11 +264,15 @@
 					var parsedW = parseInt(rawW, 10);
 					var isAutoW = !parsedW || parsedW < 1;
 					var isAutoAspect = (rawW === 'auto-small' || rawW === 'auto-medium' || rawW === 'auto-large');
+					var aspectAttr = item.getAttribute('data-grid-aspect-ratio');
+					var aspectOverride = parseAspectRatio(aspectAttr);
+					// Plain 'auto' items with a user-specified aspect ratio become aspect-driven
+					var isAspectDriven = isAutoAspect || (isAutoW && aspectOverride);
 					var width;
 
-					if (isAutoAspect) {
+					if (isAspectDriven) {
 						var img = item.querySelector('img');
-						width = img ? getAspectPreferredWidth(img, rawW, totalCols, rowHeight) : 1;
+						width = getAspectPreferredWidth(img, rawW, totalCols, rowHeight, aspectOverride);
 						isAutoW = false;
 					} else {
 						width = isAutoW ? 1 : Math.min(parsedW, totalCols);
@@ -262,15 +306,20 @@
 					var isAutoH = !parsedH || parsedH < 1 || rawH === 'auto';
 					if (isAutoH) {
 						var imgEl = el.querySelector('img');
-						if (imgEl) {
+						var aspectAttrH = el.getAttribute('data-grid-aspect-ratio');
+						var aspectOverrideH = parseAspectRatio(aspectAttrH);
+						if (imgEl || aspectOverrideH) {
 							var finalWidth = parseInt(el.style.gridColumn.replace('span ', ''), 10) || 1;
-							var rowSpan = getAutoHeight(imgEl, finalWidth, totalCols, rowHeight);
+							var rowSpan = getAutoHeight(imgEl, finalWidth, totalCols, rowHeight, aspectOverrideH);
 							el.style.gridRow = 'span ' + rowSpan;
 						}
 					}
 				}
 
-				// Apply text scaling based on final item area
+				// Apply text scaling based on normalised item area.
+				// Using (colSpan / totalCols) * rowSpan instead of raw colSpan * rowSpan
+				// ensures the same visual thresholds apply regardless of column count
+				// (2-col mobile, 3-col tablet, 12-col desktop, or any custom count).
 				items.forEach(function(item) {
 					var colSpan = parseInt(item.style.gridColumn.replace('span ', ''), 10) || 1;
 					var rowStr = item.style.gridRow;
@@ -284,13 +333,14 @@
 							}
 						}
 					}
-					var area = colSpan * rowSpan;
+					// Normalise: fraction of grid width × row count
+					var normArea = (colSpan / totalCols) * rowSpan;
 					item.classList.remove('listing-item--size-sm', 'listing-item--size-md', 'listing-item--size-lg', 'listing-item--size-xl');
-					if (area >= 16) {
+					if (normArea >= 1.3) {
 						item.classList.add('listing-item--size-xl');
-					} else if (area >= 8) {
+					} else if (normArea >= 0.6) {
 						item.classList.add('listing-item--size-lg');
-					} else if (area >= 4) {
+					} else if (normArea >= 0.25) {
 						item.classList.add('listing-item--size-md');
 					} else {
 						item.classList.add('listing-item--size-sm');

@@ -141,6 +141,15 @@ $grid-spacing: {{ site.data.settings.grid_settings.grid_spacing }}px;
 $grid-columns: {{ site.data.settings.grid_settings.grid_columns }};
 $grid-row-height: {{ site.data.settings.grid_settings.grid_row_height }}px;
 
+// Responsive column counts derived as fractions of $grid-columns.
+// tablet ≈ ¼ of desktop (min 2);  mobile ≈ ⅙ of desktop (min 2).
+// Changing grid_columns in _data/settings.yml automatically rescales all breakpoints.
+{% assign _gc = site.data.settings.grid_settings.grid_columns %}
+{% assign _tc = _gc | times: 1.0 | divided_by: 4 | round %}{% if _tc < 2 %}{% assign _tc = 2 %}{% endif %}
+{% assign _mc = _gc | times: 1.0 | divided_by: 6 | round %}{% if _mc < 2 %}{% assign _mc = 2 %}{% endif %}
+$grid-columns-tablet: {{ _tc }};
+$grid-columns-mobile: {{ _mc }};
+
 
 
 // - - - - - - - - - - Global styles

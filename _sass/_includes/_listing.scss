@@ -17,11 +17,11 @@
 	grid-auto-rows: $grid-row-height;
 
 	@include mq(mobilep) {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat($grid-columns-mobile, 1fr);
 	}
 
 	@include mq(tabletp) {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat($grid-columns-tablet, 1fr);
 	}
 
 	@include mq(tabletl) {
@@ -208,14 +208,20 @@
 	}
 }
 
-// Text scaling for larger grid items (JS adds size classes based on col*row area)
+// Text scaling for larger grid items (JS adds size classes based on normalised col×row area)
 .listing-item--size-md {
 	.listing-item__title {
+		@include mq(tabletp) {
+			font-size: clamp(13px, 1.8vw, $grid-item-title-small);
+		}
 		@include mq(tabletl) {
 			font-size: clamp(13px, 1.4vw, $grid-item-title-small);
 		}
 	}
 	.listing-item__subtitle {
+		@include mq(tabletp) {
+			font-size: clamp(10px, 1.4vw, $grid-item-subtitle-small);
+		}
 		@include mq(tabletl) {
 			font-size: clamp(10px, 1.1vw, $grid-item-subtitle-small);
 		}
@@ -224,11 +230,17 @@
 
 .listing-item--size-lg {
 	.listing-item__title {
+		@include mq(tabletp) {
+			font-size: clamp(15px, 2vw, $grid-item-title-medium);
+		}
 		@include mq(tabletl) {
 			font-size: clamp(15px, 1.6vw, $grid-item-title-medium);
 		}
 	}
 	.listing-item__subtitle {
+		@include mq(tabletp) {
+			font-size: clamp(11px, 1.5vw, $grid-item-subtitle-medium);
+		}
 		@include mq(tabletl) {
 			font-size: clamp(11px, 1.2vw, $grid-item-subtitle-medium);
 		}
@@ -237,11 +249,17 @@
 
 .listing-item--size-xl {
 	.listing-item__title {
+		@include mq(tabletp) {
+			font-size: clamp(18px, 2.4vw, $grid-item-title-large);
+		}
 		@include mq(tabletl) {
 			font-size: clamp(18px, 1.8vw, $grid-item-title-large);
 		}
 	}
 	.listing-item__subtitle {
+		@include mq(tabletp) {
+			font-size: clamp(13px, 1.8vw, $grid-item-subtitle-large);
+		}
 		@include mq(tabletl) {
 			font-size: clamp(13px, 1.4vw, $grid-item-subtitle-large);
 		}
@@ -258,6 +276,9 @@
 		line-height: 1.15;
 		padding-bottom: 0.1em;
 
+		@include mq(tabletp) {
+			font-size: 11px;
+		}
 		@include mq(tabletl) {
 			font-size: 11px;
 		}
