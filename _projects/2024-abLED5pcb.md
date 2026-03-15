@@ -5,8 +5,8 @@ date: 2024-7-16
 featured_image: '/images/thumbs/abLED5pcb.webp'
 permalink: /abLED5_PCB/
 layout: wider
-grid_width: auto
-grid_height: auto
+grid_width: auto-small
+grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 

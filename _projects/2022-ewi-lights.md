@@ -5,8 +5,8 @@ date: 2022-3-1 00:00:00
 description: Board is a stylish full-width masonry grid theme. Made for designers, artists, photographers and developers to show off their best work.
 featured_image: '/images/thumbs/ewi_led.webp'
 permalink: /EWI-LED/
-grid_width: auto
-grid_height: auto
+grid_width: auto-small
+grid_height: 2
 grid_crop: cover
 grid_crop_position: center
 
