@@ -6,8 +6,8 @@ description: Board is a stylish full-width masonry grid theme. Made for designer
 featured_image: '/images/thumbs/tension.webp'
 permalink: /tensiometer/
 layout: wider
-grid_width: 3
-grid_height: 2
+grid_width: 4
+grid_height: auto-large
 grid_crop: cover
 grid_crop_position: left
 

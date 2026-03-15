@@ -6,7 +6,7 @@ description:
 featured_image: '/images/thumbs/omnichord.webp'
 permalink: /omnichord/
 layout: wider
-grid_width: auto
+grid_width: 2
 grid_height: auto
 grid_crop: cover
 grid_crop_position: center

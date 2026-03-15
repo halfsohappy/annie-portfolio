@@ -196,11 +196,11 @@
 					var preferred = Math.round(aspect * rh / colWidth);
 
 					if (mode === 'auto-small') {
-						preferred = Math.max(1, Math.min(preferred, 2));
+						preferred = Math.max(1, Math.min(preferred, 3));
 					} else if (mode === 'auto-medium') {
-						preferred = Math.max(2, Math.min(preferred, 3));
+						preferred = Math.max(3, Math.min(preferred, 4));
 					} else if (mode === 'auto-large') {
-						preferred = Math.max(3, Math.min(preferred, 5));
+						preferred = Math.max(5, Math.min(preferred, 8));
 					}
 					return Math.min(preferred, cols);
 				}
@@ -286,11 +286,11 @@
 					}
 					var area = colSpan * rowSpan;
 					item.classList.remove('listing-item--size-sm', 'listing-item--size-md', 'listing-item--size-lg', 'listing-item--size-xl');
-					if (area >= 8) {
+					if (area >= 16) {
 						item.classList.add('listing-item--size-xl');
-					} else if (area >= 4) {
+					} else if (area >= 8) {
 						item.classList.add('listing-item--size-lg');
-					} else if (area >= 2) {
+					} else if (area >= 4) {
 						item.classList.add('listing-item--size-md');
 					} else {
 						item.classList.add('listing-item--size-sm');

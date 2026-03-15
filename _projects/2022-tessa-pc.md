@@ -6,8 +6,8 @@ description:
 featured_image: '/images/thumbs/tessa_pc.webp'
 permalink: /tessa-pc/
 layout: wider
-grid_width: auto
-grid_height: auto
+grid_width: 3
+grid_height: 3
 grid_crop: cover
 grid_crop_position: center
 

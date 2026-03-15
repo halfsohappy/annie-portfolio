@@ -121,7 +121,8 @@
 	bottom: 0;
 	left: 0;
 	display: flex;
-	padding: 17px 20px;
+	padding: 10px 12px;
+	overflow: hidden;
 	background: rgba($overlay-background-color, $overlay-opacity);
 
 	opacity: 0;
@@ -153,7 +154,6 @@
 
 .listing-item__info {
 	width: 100%;
-	overflow: hidden;
 	opacity: 0;
 	@include translate(0,10px);
 	//@include transition(all 0.3s ease-in-out);
@@ -172,10 +172,7 @@
 	text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 	font-size: clamp(12px, 1.4vw, $grid-item-title-small);
 	line-height: 1.2;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+	padding-bottom: 0.15em;
 
 	@include mq(tabletp) {
 		font-size: clamp(13px, 1.5vw, $grid-item-title-small);
@@ -198,10 +195,6 @@
 	text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 	font-size: clamp(9px, 1vw, $grid-item-subtitle-small);
 	line-height: 1.3;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
 
 	@include mq(tabletp) {
 		font-size: clamp(10px, 1.1vw, $grid-item-subtitle-small);
@@ -233,17 +226,11 @@
 	.listing-item__title {
 		@include mq(tabletl) {
 			font-size: clamp(15px, 1.6vw, $grid-item-title-medium);
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 3;
 		}
 	}
 	.listing-item__subtitle {
 		@include mq(tabletl) {
 			font-size: clamp(11px, 1.2vw, $grid-item-subtitle-medium);
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 4;
 		}
 	}
 }
@@ -252,21 +239,55 @@
 	.listing-item__title {
 		@include mq(tabletl) {
 			font-size: clamp(18px, 1.8vw, $grid-item-title-large);
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 3;
 		}
 	}
 	.listing-item__subtitle {
 		@include mq(tabletl) {
 			font-size: clamp(13px, 1.4vw, $grid-item-subtitle-large);
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 5;
 		}
 	}
 }
 
+// Small tiles (1×1): tighter padding, smaller text, title-only
+.listing-item--size-sm {
+	.listing-item__content {
+		padding: 4px 5px;
+	}
+	.listing-item__title {
+		font-size: 10px;
+		line-height: 1.15;
+		padding-bottom: 0.1em;
+
+		@include mq(tabletl) {
+			font-size: 11px;
+		}
+		@include mq(laptop) {
+			font-size: 11px;
+		}
+	}
+	.listing-item__subtitle {
+		display: none;
+	}
+}
+
+// Medium tiles: restore subtitle, moderate padding
+.listing-item--size-md {
+	.listing-item__content {
+		@include mq(tabletl) {
+			padding: 10px 12px;
+		}
+	}
+}
+
+// Large and XL tiles: generous padding
+.listing-item--size-lg,
+.listing-item--size-xl {
+	.listing-item__content {
+		@include mq(tabletl) {
+			padding: 15px 18px;
+		}
+	}
+}
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Pagination

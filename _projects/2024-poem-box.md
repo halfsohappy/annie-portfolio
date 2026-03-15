@@ -6,8 +6,8 @@ description:
 featured_image: '/images/thumbs/poem.webp'
 permalink: /poembox/
 layout: wider
-grid_width: auto
-grid_height: auto
+grid_width: auto-medium
+grid_height: auto-medium
 grid_crop: cover
 grid_crop_position: center
 

@@ -6,8 +6,8 @@ description:
 featured_image: '/images/thumbs/nixie.webp'
 permalink: /nixie_pomo/
 layout: wider
-grid_width: 2
-grid_height: 1
+grid_width: 3
+grid_height: 2
 grid_crop: cover
 grid_crop_position: center
 

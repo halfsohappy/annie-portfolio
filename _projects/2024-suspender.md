@@ -8,9 +8,9 @@ skills: "Wireless, Embedded, Wearables"
 permalink: /suspender/
 layout: wider
 grid_width: 2
-grid_height: 1
+grid_height: 3
 grid_crop: cover
-grid_crop_position: center
+grid_crop_position: left
 
 
 personal: true
