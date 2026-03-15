@@ -3,3 +3,19 @@ _site/
 .jekyll-cache/
 .bundle/
 vendor/
+
+# OS files
+**/.DS_Store
+Thumbs.db
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (if tooling is added)
+node_modules/
+
+# Environment
+.env

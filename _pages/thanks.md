@@ -1,10 +1,8 @@
 ---
 title: Thank you
 subtitle: Your message was sent successfully.
-description: Board is a stylish full-width masonry grid theme.
-featured_image: /images/demo/about.jpg
+description: Thank you for reaching out.
+featured_image:
 ---
 
-![](/images/demo/about.jpg)
-
-Please note, this contact form is for demo purposes only and is not monitored. Please contact us [via our website](https://jekyllthemes.io) if you need support.
+Thank you for your message! I'll get back to you as soon as I can.
